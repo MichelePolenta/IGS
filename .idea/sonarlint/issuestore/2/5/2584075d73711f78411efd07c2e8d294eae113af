@@ -1,13 +1,10 @@
 
-`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(¾×žåüÿÿÿÿ
-`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ÝÍ¢Óûÿÿÿÿ
-`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(¬œðòüÿÿÿÿ
+v
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(”¡˜‡8ï’“žÇ1
+{
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(×„ËÍúÿÿÿÿ8ï’“žÇ1
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¨ø° ÿÿÿÿÿ
-N
-java:S3400"9Remove this method and declare a constant for this value.(¸®Ã'
-J
-java:S1172"/Remove this unused method parameter "password".(ìåä»øÿÿÿÿ
-a
-java:S1871$"LThis branch's code block is the same as the block for the branch on line 33.(¸®Ã'
-Z
-java:S1144"?Remove this unused private "controlloCaratteriSpeciali" method.(ìåä»øÿÿÿÿ
+[
+java:S1068">Remove this unused "storicoInformazioniSalvate" private field.(”¡˜‡8þ’“žÇ1
+Y
+java:S1068"7Remove this unused "storicoSegnalazioni" private field.(×„ËÍúÿÿÿÿ8þ’“žÇ1

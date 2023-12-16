@@ -11,7 +11,7 @@ public class TuristaAutenticato extends Persona implements AccountManager {
     private List<String> storicoInformazioniSalvate = new ArrayList<String>();
     private List<String> storicoSegnalazioni = new ArrayList<String>();
 
-    public TuristaAutenticato(String nome, Date dataDiNascita, String citta, String mail, String password)
+    public TuristaAutenticato(String nome, String dataDiNascita, String citta, String mail, String password)
             throws Exception {
         super(nome, dataDiNascita, citta, mail, password);
         this.codice = generaCodice();
