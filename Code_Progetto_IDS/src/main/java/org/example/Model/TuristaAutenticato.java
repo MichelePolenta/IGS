@@ -1,49 +1,24 @@
 package org.example.Model;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.regex.Pattern;
 import javax.xml.crypto.Data;
 
-public class TuristaAutenticato extends Persona {
+public class TuristaAutenticato extends Persona implements AccountManager {
 
-    private String mail;
-    private String password;
+    private List<String> storicoInformazioniSalvate = new ArrayList<String>();
+    private List<String> storicoSegnalazioni = new ArrayList<String>();
 
-    public TuristaAutenticato(Persona persona, String mail, String password) throws Exception {
-        super(persona.getNome(), persona.getCognome(), persona.getDataDiNascita(), persona.getCodiceFiscale(),
-                persona.getCitta(), persona.getResidenza());
-        if (controlloMail(mail) && controlloPassword(password)) {
-            this.mail = mail;
-            this.password = password;
-        } else
-            throw new Exception("Mail e password non compilati correttamente");
+    public TuristaAutenticato(String nome, Date dataDiNascita, String citta, String mail, String password)
+            throws Exception {
+        super(nome, dataDiNascita, citta, mail, password);
+        this.codice = generaCodice();
     }
 
-    private boolean controlloPassword(String password) throws Exception {
-        if (password.length() <= 8)
-            throw new Exception("La password deve contenere almeno 8 caratteri");
-        return true;
-    }
-
-    private boolean controlloCaratteriSpeciali(String password) {
-        return false;
-    }
-
-    private boolean controlloMail(String mail) {
-        if (!mail.contains("@"))
-            return false;
-
-        else if (!(mail.contains(".com")) || !(mail.contains(".it")))
-            return false;
-
-        return true;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getMail() {
-        return mail;
+    public String generaCodice() {
+        return Ruolo.TURAUT + "" + this.getNome().charAt(0) + "" + this.getNome().charAt(this.getNome().length() - 1);
     }
 
 }
