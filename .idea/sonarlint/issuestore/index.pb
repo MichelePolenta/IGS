@@ -17,3 +17,7 @@ f
 6Code_Progetto_IDS/src/test/java/RegistrazioneTest.java,f\2\f2d9659784303d082272a79b58c41ef1d49ea2f3
 I
 Code_Progetto_IDS/pom.xml,6\6\6612f2c780be944d6672a93fd97db66a718718a2
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+P
+ Visual_Paradigm/.IDS (1).vpp.lck,2\e\2e907cff1edbd160b6c03de73ccd1611c040cefa
