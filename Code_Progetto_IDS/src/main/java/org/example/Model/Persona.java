@@ -33,7 +33,7 @@ public class Persona {
         return true;
     }
 
-    public boolean controlloPassword(String password) throws Exception {
+    private boolean controlloPassword(String password) throws Exception {
         Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=])[a-zA-Z0-9@#$%^&+=]{8,}$");
         Matcher matcher = pattern.matcher(password);
         if (!matcher.matches())
@@ -42,7 +42,7 @@ public class Persona {
         return true;
     }
 
-    public boolean controlloMail(String mail) throws Exception {
+    private boolean controlloMail(String mail) throws Exception {
         Pattern pattern = Pattern.compile("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$");
         Matcher matcher = pattern.matcher(mail);
         if (!matcher.matches())
