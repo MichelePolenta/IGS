@@ -49,6 +49,7 @@ public class Persona {
             throw new Exception("La mail non è stata scritta correttamente");
         this.mail = mail;
         return true;
+        //test
 
     }
 

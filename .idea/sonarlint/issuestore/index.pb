@@ -4,13 +4,9 @@ ICode_Progetto_IDS/src/main/java/org/example/Model/TuristaAutenticato.java,2\5\
 r
 BCode_Progetto_IDS/src/main/java/org/example/Model/TypeContent.java,e\2\e27ce9d5bc9425fa8e2016e9bf0d8be7182dea00
 n
->Code_Progetto_IDS/src/main/java/org/example/Model/Persona.java,3\d\3deea4924a085937895c1363eb483da79711d869
-n
 >Code_Progetto_IDS/src/main/java/org/example/Model/Gestore.java,c\f\cf07142c55461e9affd51f54c4e627608e050cba
 l
 <Code_Progetto_IDS/src/main/java/org/example/Model/Ruolo.java,8\e\8ecb16a2a2a280c22ac106bcdbc7e2b8d6255d22
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 u
 ECode_Progetto_IDS/src/main/java/org/example/Model/AccountManager.java,6\d\6d1749fda41396dccc530667817439a386214d43
 e
