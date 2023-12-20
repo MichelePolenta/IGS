@@ -8,14 +8,7 @@ import java.util.regex.Pattern;
 
 public interface Persona {
 
-    String nome = "";
-    LocalDate dataDiNascita = null;
-    String citta = "";
-    String codice = "";
-    String mail = "";
-    String password = "";
-
-
+    
     default boolean controlloCredenziali(String mail, String password) throws Exception {
         if (!controlloPassword(password))
             return false;
@@ -48,29 +41,21 @@ public interface Persona {
 
     default void seleziona(){}
 
+    default void segnala(String text){}
 
-    default String getCitta() {
-        return citta;
-    }
+    default void salvaInformazioni(String text){}
 
 
-    default String getNome() {
-        return nome;
-    }
+    String getCitta();
 
-    default String password() {
-        return password;
-    }
 
-    default String getCodice() {
-        return codice;
-    }
+    String getNome();
 
-    default String getMail() {
-        return mail;
-    }
+    String password();
 
-    default LocalDate getDataDiNascita() {
-        return dataDiNascita;
-    }
+    String getCodice();
+
+    String getMail();
+
+    LocalDate getDataDiNascita();
 }
