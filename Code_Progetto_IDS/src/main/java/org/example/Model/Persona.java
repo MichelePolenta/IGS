@@ -6,26 +6,17 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Persona {
+public interface Persona {
 
-    private String nome;
-    private LocalDate dataDiNascita;
-    private String citta;
-    protected String codice;
-    private String mail;
-    private String password;
+    String nome = "";
+    LocalDate dataDiNascita = null;
+    String citta = "";
+    String codice = "";
+    String mail = "";
+    String password = "";
 
-    public Persona(String nome, String dataDiNascita, String citta, String mail, String password)
-            throws Exception {
-        if (controlloCredenziali(mail, password)) {
-            this.nome = nome;
-            this.dataDiNascita = LocalDate.parse(dataDiNascita, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            this.citta = citta;
-            this.mail = mail;
-        }
-    }
 
-    public boolean controlloCredenziali(String mail, String password) throws Exception {
+    default boolean controlloCredenziali(String mail, String password) throws Exception {
         if (!controlloPassword(password))
             return false;
         else if (!controlloMail(mail))
@@ -33,51 +24,52 @@ public class Persona {
         return true;
     }
 
-    private boolean controlloPassword(String password) throws Exception {
+    default boolean controlloPassword(String password) throws Exception {
         Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=])[a-zA-Z0-9@#$%^&+=]{8,}$");
         Matcher matcher = pattern.matcher(password);
         if (!matcher.matches())
             throw new Exception("La passowrd non è sicura");
-        this.password = password;
+        //this.password = password;
         return true;
     }
 
-    private boolean controlloMail(String mail) throws Exception {
+    default boolean controlloMail(String mail) throws Exception {
         Pattern pattern = Pattern.compile("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$");
         Matcher matcher = pattern.matcher(mail);
         if (!matcher.matches())
             throw new Exception("La mail non è stata scritta correttamente");
-        this.mail = mail;
+        //this.mail = mail;
         return true;
 
     }
 
-    public String getCitta() {
+    default void visualizza(){}
+
+    default void seleziona(){}
+
+
+    default String getCitta() {
         return citta;
     }
 
-    @Override
-    public String toString() {
-        return "Nome: " + this.getNome() + "\n" + "Codice: " + this.getCodice() + "\n" + "Mail: " + this.getMail();
-    }
 
-    public String getNome() {
+    default String getNome() {
         return nome;
     }
 
-    public String password() {
+    default String password() {
         return password;
     }
 
-    public String getCodice() {
+    default String getCodice() {
         return codice;
     }
 
-    public String getMail() {
+    default String getMail() {
         return mail;
     }
 
-    public LocalDate getDataDiNascita() {
+    default LocalDate getDataDiNascita() {
         return dataDiNascita;
     }
 }
