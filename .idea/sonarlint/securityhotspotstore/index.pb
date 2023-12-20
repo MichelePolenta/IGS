@@ -1,6 +1,4 @@
 
-y
-ICode_Progetto_IDS/src/main/java/org/example/Model/TuristaAutenticato.java,2\5\2584075d73711f78411efd07c2e8d294eae113af
 r
 BCode_Progetto_IDS/src/main/java/org/example/Model/TypeContent.java,e\2\e27ce9d5bc9425fa8e2016e9bf0d8be7182dea00
 n
@@ -15,9 +13,13 @@ u
 ECode_Progetto_IDS/src/main/java/org/example/Model/Accreditamento.java,a\2\a2f3a428bc370017d255b4965eb3f5c5f3748969
 I
 Code_Progetto_IDS/pom.xml,6\6\6612f2c780be944d6672a93fd97db66a718718a2
-f
-6Code_Progetto_IDS/src/test/java/RegistrazioneTest.java,f\2\f2d9659784303d082272a79b58c41ef1d49ea2f3
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-P
- Visual_Paradigm/.IDS (1).vpp.lck,2\e\2e907cff1edbd160b6c03de73ccd1611c040cefa
+Å
+Q.idea/sonarlint/securityhotspotstore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,1\0\10a03f31c4dce92cb371e761ce9429428bb6c176
+Å
+Q.idea/sonarlint/securityhotspotstore/2/e/2e907cff1edbd160b6c03de73ccd1611c040cefa,3\7\37cbcf4217ca83837f9e90747880ce4d7347f202
+w
+G.idea/sonarlint/issuestore/2/e/2e907cff1edbd160b6c03de73ccd1611c040cefa,9\e\9e55082b9b340e9b1ba9f22853fc0ce421f24599
+w
+G.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,b\4\b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3
