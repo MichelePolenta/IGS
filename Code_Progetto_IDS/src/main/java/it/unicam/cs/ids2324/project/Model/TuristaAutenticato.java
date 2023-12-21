@@ -3,40 +3,41 @@ import java.time.LocalDate;
 
 public class TuristaAutenticato extends Persona {
 
-    @Override
-    public Comune getCitta() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCitta'");
+
+    public TuristaAutenticato(String nome, String mail, String password, Comune citta, String dataDiNascita) throws Exception {
+        super(nome, mail, password, citta, dataDiNascita);
+        this.ruolo = Ruolo.TURAUT+"";
     }
 
     @Override
-    public String getNome() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNome'");
+    Comune getCitta() {
+        return this.citta;
     }
 
     @Override
-    public String password() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'password'");
+    String getNome() {
+        return this.nome;
     }
 
     @Override
-    public String getCodice() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCodice'");
+    String password() {
+        return this.password;
     }
 
     @Override
-    public String getMail() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getMail'");
+    String getRuolo() {
+        return this.ruolo;
     }
 
     @Override
-    public LocalDate getDataDiNascita() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDataDiNascita'");
+    String getMail() {
+        return this.mail;
     }
-    
+
+    @Override
+    LocalDate getDataDiNascita() {
+        return this.dataDiNascita;
+    }
+
+
 }

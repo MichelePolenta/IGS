@@ -7,15 +7,9 @@ import java.util.random.*;
 
 public class Animatore extends Persona {
 
-    
     public Animatore(String nome, String mail, String password,Comune citta, String dataDiNascita) throws Exception{
-        this.controlloCredenziali(mail, password);
-        this.nome = nome;
-        this.mail = mail;
-        this.password = password;
-        this.citta = citta;
-        this.dataDiNascita = LocalDate.parse(dataDiNascita);
-        this.codice = generaCodice(Ruolo.ANIM, this.citta.getNome());
+        super(nome, mail, password, citta, dataDiNascita);
+        this.ruolo = Ruolo.ANIM+"";
     }
     
     public boolean validazioneContenuto(String contenuto){
@@ -41,8 +35,8 @@ public class Animatore extends Persona {
     }
 
     @Override
-    public String getCodice() {
-        return this.codice;
+    String getRuolo() {
+        return this.ruolo;
     }
 
     @Override
