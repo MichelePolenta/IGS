@@ -2,22 +2,20 @@ package org.example.Model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.random.*;
 
-public class Animatore implements Persona {
+public class Animatore extends Persona {
 
-    String nome;
-    String mail;
-    String password;
-    String citta;
-    LocalDate dataDiNascita;
-    String codice;
-
-    public Animatore(String nome, String mail, String password,String citta, LocalDate dataDiNascita){
+    
+    public Animatore(String nome, String mail, String password,Comune citta, LocalDate dataDiNascita) throws Exception{
+        this.controlloCredenziali(mail, password);
         this.nome = nome;
         this.mail = mail;
         this.password = password;
         this.citta = citta;
         this.dataDiNascita = dataDiNascita;
+        this.codice = generaCodice(Ruolo.ANIM, this.citta.getNome());
     }
     
     public boolean validazioneContenuto(String contenuto){
@@ -25,11 +23,10 @@ public class Animatore implements Persona {
     }
 
     public void creazioneContest(String nomeContest, ArrayList<ContributorAut> listaPartecipanti, LocalDate dataInizio, LocalDate dataFine){
-
     }
 
     @Override
-    public String getCitta() {
+    public Comune getCitta() {
         return this.citta;
     }
 
@@ -57,6 +54,5 @@ public class Animatore implements Persona {
     public LocalDate getDataDiNascita() {
         return this.dataDiNascita;
     }
-
 
 }

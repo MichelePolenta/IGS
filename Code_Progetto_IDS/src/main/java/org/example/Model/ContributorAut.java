@@ -2,26 +2,23 @@ package org.example.Model;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.util.Random;
+import org.example.Model.*;
+import java.util.random.*;
 
+public class ContributorAut extends Persona {
 
-public class ContributorAut implements Persona {
-
-    String nome;
-    String mail;
-    String password;
-    String citta;
-    LocalDate dataDiNascita;
-    String codice;
-
-    public ContributorAut(String nome, String mail, String password,String citta, LocalDate dataDiNascita){
+    public ContributorAut(String nome, String mail, String password,Comune citta, LocalDate dataDiNascita) throws Exception{
+        this.controlloCredenziali(mail, password);
         this.nome = nome;
         this.mail = mail;
         this.password = password;
         this.citta = citta;
         this.dataDiNascita = dataDiNascita;
+        this.codice = generaCodice(Ruolo.CONTRAUT, this.citta.getNome());
     }
 
-    public boolean inserimento(String puntoDiRilievo){
+    public boolean inserimento(PuntoLogico puntoDiRilievo){
         return false;
     }
 
@@ -29,7 +26,7 @@ public class ContributorAut implements Persona {
         return false;
     }
 
-    public boolean modifica(String puntoDiRilievo){
+    public boolean modifica(PuntoLogico puntoDiRilievo){
         return false;
     }
 
@@ -38,7 +35,7 @@ public class ContributorAut implements Persona {
     }
 
     @Override
-    public String getCitta() {
+    public Comune getCitta() {
         return this.citta;
     }
 
@@ -66,5 +63,6 @@ public class ContributorAut implements Persona {
     public LocalDate getDataDiNascita() {
         return this.dataDiNascita;
     }
+
     
 }

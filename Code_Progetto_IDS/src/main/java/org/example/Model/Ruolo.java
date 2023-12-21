@@ -6,4 +6,5 @@ public enum Ruolo {
     CONTRAUT,
     CUR,
     ANIM,
+    GEST,
 }

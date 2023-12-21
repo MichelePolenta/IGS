@@ -3,13 +3,22 @@ package org.example.Model;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Random;
 
-public interface Persona {
+public abstract class Persona {
 
+    protected String nome;
+    protected String mail;
+    protected String password;
+    protected Comune citta;
+    protected LocalDate dataDiNascita;
+    protected String codice;
     
-    default boolean controlloCredenziali(String mail, String password) throws Exception {
+    
+    boolean controlloCredenziali(String mail, String password) throws Exception {
         if (!controlloPassword(password))
             return false;
         else if (!controlloMail(mail))
@@ -17,45 +26,46 @@ public interface Persona {
         return true;
     }
 
-    default boolean controlloPassword(String password) throws Exception {
+    boolean controlloPassword(String password) throws Exception {
         Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=])[a-zA-Z0-9@#$%^&+=]{8,}$");
         Matcher matcher = pattern.matcher(password);
         if (!matcher.matches())
             throw new Exception("La passowrd non è sicura");
-        //this.password = password;
         return true;
     }
 
-    default boolean controlloMail(String mail) throws Exception {
+    boolean controlloMail(String mail) throws Exception {
         Pattern pattern = Pattern.compile("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$");
         Matcher matcher = pattern.matcher(mail);
         if (!matcher.matches())
             throw new Exception("La mail non è stata scritta correttamente");
-        //this.mail = mail;
         return true;
-        //test
-
     }
 
-    default void visualizza(){}
+    void visualizza(){}
 
-    default void seleziona(){}
+    void seleziona(){}
 
-    default void segnala(String text){}
+    void segnala(String text){}
 
-    default void salvaInformazioni(String text){}
-
-
-    String getCitta();
+    void salvaInformazioni(String text){}
 
 
-    String getNome();
+    abstract Comune getCitta();
 
-    String password();
 
-    String getCodice();
+    abstract String getNome();
 
-    String getMail();
+    abstract String password();
 
-    LocalDate getDataDiNascita();
+    abstract String getCodice();
+
+    abstract String getMail();
+
+    abstract LocalDate getDataDiNascita();
+
+    String generaCodice(Ruolo ruolo, String citta){
+        Random random = new Random();
+        return ruolo +""+random.nextInt(9)+""+random.nextInt(9)+citta;
+    }
 }

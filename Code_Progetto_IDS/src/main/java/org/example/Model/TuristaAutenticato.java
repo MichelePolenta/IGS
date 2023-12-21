@@ -2,10 +2,10 @@ package org.example.Model;
 
 import java.time.LocalDate;
 
-public class TuristaAutenticato implements Persona {
+public class TuristaAutenticato extends Persona {
 
     @Override
-    public String getCitta() {
+    public Comune getCitta() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getCitta'");
     }

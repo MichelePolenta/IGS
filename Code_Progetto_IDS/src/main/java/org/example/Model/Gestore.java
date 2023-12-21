@@ -2,21 +2,15 @@ package org.example.Model;
 
 import java.time.LocalDate;
 
-public class Gestore implements Persona {
-
-    String nome;
-    String mail;
-    String password;
-    String citta;
-    LocalDate dataDiNascita;
-    String codice;
-
-    public Gestore(String nome, String mail, String password,String citta, LocalDate dataDiNascita){
+public class Gestore extends Persona {
+    public Gestore(String nome, String mail, String password,Comune citta, LocalDate dataDiNascita) throws Exception{
+        this.controlloCredenziali(mail, password);
         this.nome = nome;
         this.mail = mail;
         this.password = password;
         this.citta = citta;
         this.dataDiNascita = dataDiNascita;
+        this.codice = generaCodice(Ruolo.GEST, this.citta.getNome());
     }
 
     public boolean accreditamento(String accreditamento){
@@ -41,7 +35,7 @@ public class Gestore implements Persona {
 
   
     @Override
-    public String getCitta() {
+    public Comune getCitta() {
         return this.citta;
     }
 
