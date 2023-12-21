@@ -2,41 +2,22 @@ package it.unicam.cs.ids2324.project.Model;
 /**
  * PuntoLogico
  */
-public class PuntoLogico {
+public class PuntoLogico extends POI {
 
-    private final String comune;
-
-    private final String titolo;
-
-    private final String descrizione;
-
-    private final double lat,lon;
-
-    public PuntoLogico(String comune,String titolo,String descrizione, double lat, double lon) {
-        this.comune=comune;
-        this.titolo=titolo;
-        this.descrizione=descrizione;
-        this.lat=lat;
-        this.lon=lon;        
+    public PuntoLogico(Comune comune, String titolo, String descrizione,PuntoFisico puntoDiRifierimento) {
+        super(puntoDiRifierimento.getComune(),titolo,descrizione, puntoDiRifierimento.getLat(), puntoDiRifierimento.getLon());
     }
 
-    public String getComune() {
-        return comune;
-    }
 
-    public String getDescrizione() {
-        return descrizione;
-    }
 
-    public double getLat() {
-        return lat;
-    }
-
-    public double getLon() {
-        return lon;
-    }
-
-    public String getTitolo() {
-        return titolo;
+    @Override
+    public String toString() {
+        return "Punto Logico" +
+                "comune=" + comune +
+                ", titolo='" + titolo + '\'' +
+                ", descrizione='" + descrizione + '\'' +
+                ", latitudine=" + lat +
+                ", longitudine=" + lon +
+                '}';
     }
 }
