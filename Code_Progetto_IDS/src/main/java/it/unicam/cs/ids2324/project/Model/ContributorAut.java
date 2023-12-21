@@ -6,15 +6,9 @@ import java.time.format.DateTimeFormatter;
 
 public class ContributorAut extends Persona {
 
-    public ContributorAut(String nome, String mail, String password,Comune citta, String dataDiNascita) throws Exception{
-        this.controlloCredenziali(mail, password);
-        this.nome = nome;
-        this.mail = mail;
-        this.password = password;
-        this.citta = citta;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        this.dataDiNascita = LocalDate.parse(dataDiNascita, formatter);
-        this.codice = generaCodice(Ruolo.CONTRAUT, this.citta.getNome());
+    public ContributorAut(String nome, String mail, String password, Comune citta, String dataDiNascita) throws Exception{
+       super(nome, mail, password, citta, dataDiNascita);
+       this.ruolo = Ruolo.CONTRAUT+"";
     }
 
     public boolean inserimento(PuntoLogico puntoDiRilievo){
@@ -49,8 +43,8 @@ public class ContributorAut extends Persona {
     }
 
     @Override
-    public String getCodice() {
-        return this.codice;
+    String getRuolo() {
+        return this.ruolo;
     }
 
     @Override

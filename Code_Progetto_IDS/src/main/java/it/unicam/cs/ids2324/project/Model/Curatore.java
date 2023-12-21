@@ -5,13 +5,8 @@ public class Curatore extends Persona {
 
 
     public Curatore(String nome, String mail, String password,Comune citta, String  dataDiNascita)throws Exception{
-        this.controlloCredenziali(mail, password);
-        this.nome = nome;
-        this.mail = mail;
-        this.password = password;
-        this.citta = citta;
-        this.dataDiNascita = LocalDate.parse(dataDiNascita);
-        this.codice = generaCodice(Ruolo.CUR, this.citta.getNome());
+        super(nome, mail, password, citta, dataDiNascita);
+        this.ruolo = Ruolo.CUR+"";
     }
     
     public boolean accettazione(String richiestaInserimento){
@@ -38,8 +33,8 @@ public class Curatore extends Persona {
     }
 
     @Override
-    public String getCodice() {
-        return this.codice;
+    String getRuolo() {
+        return this.ruolo;
     }
 
     @Override

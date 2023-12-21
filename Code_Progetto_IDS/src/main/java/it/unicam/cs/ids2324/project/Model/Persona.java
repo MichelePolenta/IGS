@@ -2,6 +2,7 @@ package it.unicam.cs.ids2324.project.Model;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,8 +15,17 @@ public abstract class Persona {
     protected String password;
     protected Comune citta;
     protected LocalDate dataDiNascita;
-    protected String codice;
-    
+    protected String ruolo;
+
+    Persona(String nome, String mail, String password, Comune citta, String dataDiNascita) throws Exception {
+        this.controlloCredenziali(mail, password);
+        this.nome = nome;
+        this.mail = mail;
+        this.password = password;
+        this.citta =  citta;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.dataDiNascita = LocalDate.parse(dataDiNascita, formatter);
+    }
     
     boolean controlloCredenziali(String mail, String password) throws Exception {
         if (!controlloPassword(password))
@@ -31,6 +41,10 @@ public abstract class Persona {
         if (!matcher.matches())
             throw new Exception("La passowrd non è sicura");
         return true;
+    }
+
+    boolean controlloDataDiNascita(String dataDiNascita){
+        return false;
     }
 
     boolean controlloMail(String mail) throws Exception {
@@ -57,16 +71,13 @@ public abstract class Persona {
 
     abstract String password();
 
-    abstract String getCodice();
+    abstract String getRuolo();
 
     abstract String getMail();
 
     abstract LocalDate getDataDiNascita();
 
-    String generaCodice(Ruolo ruolo, String citta){
-        Random random = new Random();
-        return ruolo +""+random.nextInt(9)+""+random.nextInt(9)+citta;
-    }
+
 
     @Override
     public String toString() {
@@ -75,6 +86,6 @@ public abstract class Persona {
                 "Password: "+this.password+"\n"+
                 "Citta: "+this.citta.getNome()+"\n"+
                 "Data: "+this.dataDiNascita+"\n"+
-                "Codice: "+this.codice+"";
+                "Ruolo: "+this.ruolo+"";
     }
 }
