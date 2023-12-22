@@ -1,10 +1,4 @@
 
-n
->Code_Progetto_IDS/src/main/java/org/example/Model/Gestore.java,c\f\cf07142c55461e9affd51f54c4e627608e050cba
-l
-<Code_Progetto_IDS/src/main/java/org/example/Model/Ruolo.java,8\e\8ecb16a2a2a280c22ac106bcdbc7e2b8d6255d22
-e
-5Code_Progetto_IDS/src/main/java/org/example/Main.java,2\7\277bc0625fbc7d804c5124d94e7338fd67f36f7b
 I
 Code_Progetto_IDS/pom.xml,6\6\6612f2c780be944d6672a93fd97db66a718718a2
 9
@@ -91,3 +85,5 @@ cCode_Progetto_IDS/.idea/sonarlint/securityhotspotstore/f/d/fd8db7308d0fd6e42796
 cCode_Progetto_IDS/.idea/sonarlint/securityhotspotstore/f/a/fa32f3ee2ba08d91708e76abd5fed069fee2d7bb,3\5\357e0664b5407e4b009466bc0e7d8d0589097cb8
 e
 5Code_Progetto_IDS/.idea/sonarlint/issuestore/index.pb,8\0\80a982ea50b73efe09c65e7923e3fdbfd32b0410
+ 
+pCode_Progetto_IDS/src/main/java/it/unicam/cs/ids2324/project/Model/Database_Interaction/QueryInsertExecutor.java,6\3\63bd7ac1452fe39aa0529feb30439ff5e601689a
