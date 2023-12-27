@@ -11,15 +11,17 @@ import java.util.Random;
 public abstract class Persona {
 
     protected String nome;
+    protected String cognome;
     protected String mail;
     protected String password;
     protected Comune citta;
     protected LocalDate dataDiNascita;
     protected String ruolo;
 
-    Persona(String nome, String mail, String password, Comune citta, String dataDiNascita) throws Exception {
+    Persona(String nome, String cognome, String mail, String password, Comune citta, String dataDiNascita) throws Exception {
         this.controlloCredenziali(mail, password);
         this.nome = nome;
+        this.cognome = cognome;
         this.mail = mail;
         this.password = password;
         this.citta =  citta;
@@ -64,18 +66,34 @@ public abstract class Persona {
     void salvaInformazioni(String text){}
 
 
-    abstract Comune getCitta();
+    public Comune getCitta(){
+        return this.citta;
+    }
 
 
-    abstract String getNome();
+    public String getNome(){
+        return this.nome;
+    }
 
-    abstract String password();
+    public String getCognome(){
+        return this.cognome;
+    }
 
-    abstract String getRuolo();
+    public String getPassword(){
+        return this.password;
+    }
 
-    abstract String getMail();
+    public String getRuolo(){
+        return this.ruolo;
+    }
 
-    abstract LocalDate getDataDiNascita();
+    public String getMail(){
+        return this.mail;
+    }
+
+    public LocalDate getDataDiNascita(){
+        return this.dataDiNascita;
+    }
 
 
 

@@ -7,9 +7,8 @@ import it.unicam.cs.ids2324.project.Model.Persona;
 
 public class CreatoreGestore extends CreatorePersona {
 
-    @Override
-    public Persona creaAttore(String nome, String mail, String password, String citta, String dataDiNascita)throws Exception{
-       return new Gestore(nome, mail, password, new Comune(citta), dataDiNascita);
+    public Persona creaAttore(String nome, String cognome,String mail, String password, String citta, String dataDiNascita)throws Exception{
+       return new Gestore(nome, cognome,mail, password, new Comune(citta), dataDiNascita);
     }
     
 }

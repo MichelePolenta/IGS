@@ -8,6 +8,6 @@ import it.unicam.cs.ids2324.project.Model.TuristaAutenticato;
 
 public abstract class CreatorePersona {
 
-        public abstract Persona creaAttore(String nome, String mail, String password, String citta, String dataDiNacita)throws Exception;
+        public abstract Persona creaAttore(String nome, String cognome,String mail, String password, String citta, String dataDiNacita)throws Exception;
 
 }

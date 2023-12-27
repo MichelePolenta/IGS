@@ -2,8 +2,8 @@ package it.unicam.cs.ids2324.project.Model;
 import java.time.LocalDate;
 
 public class Gestore extends Persona {
-    public Gestore(String nome, String mail, String password,Comune citta, String dataDiNascita) throws Exception{
-        super(nome, mail, password, citta, dataDiNascita);
+    public Gestore(String nome, String cognome,String mail, String password,Comune citta, String dataDiNascita) throws Exception{
+        super(nome, mail, cognome,password, citta, dataDiNascita);
         this.ruolo = Ruolo.GEST+"";
     }
 
@@ -27,35 +27,6 @@ public class Gestore extends Persona {
         return false;
     }
 
-  
-    @Override
-    public Comune getCitta() {
-        return this.citta;
-    }
 
-    @Override
-    public String getNome() {
-        return this.nome;
-    }
-
-    @Override
-    public String password() {
-        return this.password;
-    }
-
-    @Override
-    String getRuolo() {
-        return this.ruolo;
-    }
-
-    @Override
-    public String getMail() {
-        return this.mail;
-    }
-
-    @Override
-    public LocalDate getDataDiNascita() {
-        return this.dataDiNascita;
-    }
 
 }

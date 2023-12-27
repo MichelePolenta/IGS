@@ -20,6 +20,14 @@
             <version>RELEASE</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.openstreetmap.osmosis</groupId>
+            <artifactId>osm4j</artifactId>
+            <version>1.4.4</version>
+        </dependency>
     </dependencies>
+
+
+
 
 </project>

@@ -4,8 +4,8 @@ import java.time.LocalDate;
 public class Curatore extends ContributorAut {
 
 
-    public Curatore(String nome, String mail, String password,Comune citta, String  dataDiNascita)throws Exception{
-        super(nome, mail, password, citta, dataDiNascita);
+    public Curatore(String nome, String cognome,String mail, String password,Comune citta, String  dataDiNascita)throws Exception{
+        super(nome, cognome,mail, password, citta, dataDiNascita);
         this.ruolo = Ruolo.CUR+"";
     }
     
@@ -17,35 +17,8 @@ public class Curatore extends ContributorAut {
         return false;
     }
 
-    @Override
-    public Comune getCitta() {
-        return this.citta;
-    }
 
-    @Override
-    public String getNome() {
-        return this.nome;
-    }
 
-    @Override
-    public String password() {
-        return this.password;
-    }
-
-    @Override
-    String getRuolo() {
-        return this.ruolo;
-    }
-
-    @Override
-    public String getMail() {
-        return this.mail;
-    }
-
-    @Override
-    public LocalDate getDataDiNascita() {
-        return this.dataDiNascita;
-    }
 
 
 }
