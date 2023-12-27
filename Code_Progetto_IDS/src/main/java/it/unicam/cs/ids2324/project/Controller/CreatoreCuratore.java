@@ -11,4 +11,5 @@ public class CreatoreCuratore extends CreatorePersona{
         return new Curatore(nome,cognome,mail, password, new Comune(citta), dataDiNacita);
     }
 
+
 }
