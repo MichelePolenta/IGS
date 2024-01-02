@@ -2,8 +2,6 @@ package it.unicam.cs.ids2324.project.Model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.random.*;
 
 public class Animatore extends Persona {
 

@@ -1,6 +1,10 @@
 package it.unicam.cs.ids2324.project.Model;
 
 
+import it.unicam.cs.ids2324.project.Model.QueryDatabase.InsertQuery;
+import it.unicam.cs.ids2324.project.Model.QueryExecutor.QueryExecutorInsert;
+
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -11,22 +15,20 @@ public class ContributorAut extends Persona {
        this.ruolo = Ruolo.CONTRAUT+"";
     }
 
-    public boolean inserimento(PuntoLogico puntoDiRilievo){
+    public void inserimento(POI poi) throws SQLException {
+        new QueryExecutorInsert().eseguiQueryInsert(new InsertQuery().inserisciPOI(poi));
+    }
+
+    public boolean inserimento(Itinerario itinerario){
         return false;
     }
 
-    public boolean inserimento(double itinerario){
+    public void modifica (POI poi){
+
+    }
+
+    public boolean modifica(Itinerario itinerario){
         return false;
     }
 
-    public boolean modifica(PuntoLogico puntoDiRilievo){
-        return false;
-    }
-
-    public boolean modifica(double itinerario){
-        return false;
-    }
-
-
-    
 }

@@ -25,15 +25,15 @@ public abstract class Persona {
         this.mail = mail;
         this.password = password;
         this.citta =  citta;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.dataDiNascita = LocalDate.parse(dataDiNascita, formatter);
     }
     
     boolean controlloCredenziali(String mail, String password) throws Exception {
-        if (!controlloPassword(password))
+        /*  if (!controlloPassword(password))
             return false;
         else if (!controlloMail(mail))
-            return false;
+            return false;*/
         return true;
     }
 

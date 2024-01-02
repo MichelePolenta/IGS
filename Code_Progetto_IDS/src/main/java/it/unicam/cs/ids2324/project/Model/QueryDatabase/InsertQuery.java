@@ -2,11 +2,7 @@ package it.unicam.cs.ids2324.project.Model.QueryDatabase;
 
 import it.unicam.cs.ids2324.project.Model.POI;
 import it.unicam.cs.ids2324.project.Model.Persona;
-
-import java.net.Inet4Address;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
+import it.unicam.cs.ids2324.project.Model.RichestaAccreditamento;
 
 public class InsertQuery {
     public String inserisciPersona(Persona persona) {
@@ -15,11 +11,19 @@ public class InsertQuery {
                 "'" + persona.getPassword() + "', '" + persona.getRuolo() + "', '" + persona.getDataDiNascita() + "');";
     }
 
-    /**
      public String inserisciPOI(POI poi) {
-        return "INSERT INTO persona (comune, titolo, descrizione, password, ruolo, datadinascita) " +
-                "VALUES ('" + poi.getNome() + "', '" + poi.getCognome() + "', '" + poi.getMail() + "', " +
-                "'" + poi.getPassword() + "', '" + poi.getRuolo() + "', '" + poi.getDataDiNascita() + "');";
-    }*/
+        return "INSERT INTO poi (nome, descrizione, latitudine, longitudine, tipo) " +
+                "VALUES ('" + poi.getTitolo() + "', '" + poi.getDescrizione() + "', '" + poi.getLat() + "', " +
+                "'" + poi.getLon() + "', '" + poi.getType() + "');";
+    }
+
+    public String inerisciRichiestaAccreditamento(RichestaAccreditamento richestaAccreditamento){
+            return "INSERT INTO richieste_accreditamento (nome, cognome, mail, password, ruolo_richiesto, data_di_nascita, messaggio) " +
+                    "VALUES ('" + richestaAccreditamento.getPersona().getNome() + "', '" +  richestaAccreditamento.getPersona().getCognome() + "', '" +
+                    richestaAccreditamento.getPersona().getMail() + "', " + "'" + richestaAccreditamento.getPersona().getPassword() + "', '"
+                    + richestaAccreditamento.getPersona().getRuolo() + "', '" + richestaAccreditamento.getPersona().getDataDiNascita() + "', '"
+                    +richestaAccreditamento.getMessaggio()+ "');";
+
+    }
 
 }
