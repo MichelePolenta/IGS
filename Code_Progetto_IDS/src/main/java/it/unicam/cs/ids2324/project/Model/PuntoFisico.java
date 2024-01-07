@@ -5,8 +5,6 @@ public class PuntoFisico extends POI {
         super(comune,titolo,descrizione,lat,lon);
     }
 
-
-
     @Override
     public String toString() {
         return "Punto Fisico" +

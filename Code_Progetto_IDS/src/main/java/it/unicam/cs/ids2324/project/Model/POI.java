@@ -1,5 +1,8 @@
 package it.unicam.cs.ids2324.project.Model;
 
+import com.mapbox.geojson.Point;
+import it.unicam.cs.ids2324.project.Model.QueryExecutor.ManagerOSM;
+
 public abstract class POI {
 
     protected Comune comune;
@@ -10,13 +13,22 @@ public abstract class POI {
 
     protected double lat,lon;
 
-    public POI(Comune comune,String titolo,String descrizione, double lat, double lon) {
-        this.comune=comune;
+    protected boolean type;
+
+    public POI(Comune comune,String titolo,String descrizione, double lat, double lon) throws Exception {
+        if (new ManagerOSM().internoAlComune(com.mapbox.geojson.Point.fromLngLat(lon, lat), comune))
+        this.comune= comune;
+        else throw new Exception("Comune inserito errato rispetto alle coordinate!");
         this.titolo=titolo;
         this.descrizione=descrizione;
         this.lat=lat;
         this.lon=lon;
     }
+
+    public boolean detectComune(Point point){
+        return false;
+    }
+
 
     public Comune getComune() {
         return this.comune;

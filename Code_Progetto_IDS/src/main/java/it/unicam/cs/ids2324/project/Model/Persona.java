@@ -18,13 +18,13 @@ public abstract class Persona {
     protected LocalDate dataDiNascita;
     protected String ruolo;
 
-    Persona(String nome, String cognome, String mail, String password, Comune citta, String dataDiNascita) throws Exception {
+    Persona(String nome, String cognome, String mail, String password, Comune comune, String dataDiNascita) throws Exception {
         this.controlloCredenziali(mail, password);
         this.nome = nome;
         this.cognome = cognome;
         this.mail = mail;
         this.password = password;
-        this.citta =  citta;
+        this.cognome = cognome;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.dataDiNascita = LocalDate.parse(dataDiNascita, formatter);
     }
