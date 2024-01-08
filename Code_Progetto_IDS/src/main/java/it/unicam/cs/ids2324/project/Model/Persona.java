@@ -14,7 +14,7 @@ public abstract class Persona {
     protected String cognome;
     protected String mail;
     protected String password;
-    protected Comune citta;
+    protected Comune comune;
     protected LocalDate dataDiNascita;
     protected String ruolo;
 
@@ -66,8 +66,8 @@ public abstract class Persona {
     void salvaInformazioni(String text){}
 
 
-    public Comune getCitta(){
-        return this.citta;
+    public Comune getComune(){
+        return this.comune;
     }
 
 
@@ -102,7 +102,7 @@ public abstract class Persona {
         return "Nome: "+this.nome+"\n"+
                 "Mail: "+this.mail+"\n"+
                 "Password: "+this.password+"\n"+
-                "Citta: "+this.citta.getNome()+"\n"+
+                "Citta: "+this.comune.getNome()+"\n"+
                 "Data: "+this.dataDiNascita+"\n"+
                 "Ruolo: "+this.ruolo+"";
     }

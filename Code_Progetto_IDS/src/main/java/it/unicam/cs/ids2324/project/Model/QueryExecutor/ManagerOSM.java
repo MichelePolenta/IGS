@@ -49,6 +49,25 @@ public class ManagerOSM {
     }
 
 
+
+
+    public PuntoFisico getOsmElementPoi(String query,String comune) throws Exception {
+        return parsePoiXML(executeResponse(query),comune);
+    }
+
+    private String executeResponse(String query) throws IOException {
+        try (DataOutputStream printout = new DataOutputStream(connection.getOutputStream())) {
+            printout.writeBytes("data=" + URLEncoder.encode(query, StandardCharsets.UTF_8));
+        }
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) response.append(line);
+            return response.toString();
+        }
+    }
+
+
     private PuntoFisico parsePoiXML(String xmlData, String comune) throws Exception {
             DocumentBuilderFactory dbfac = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = dbfac.newDocumentBuilder();
@@ -59,15 +78,20 @@ public class ManagerOSM {
             return new PuntoFisico(new Comune(comune), name, "", 0, 0);
     }
 
-    private void parseBoundsXML(String xmlData) {
-        try {
+    private int indexFinder(Element node, String element){
+        for (int i = 0; i < node.getElementsByTagName("tag").getLength(); i++) {
+            if (node.getElementsByTagName("tag").item(i).getAttributes().getNamedItem("k").getTextContent().equals(element)){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private Polygon parsePolygonXML(String xmlData) throws ParserConfigurationException, IOException, SAXException {
             DocumentBuilderFactory dbfac = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = dbfac.newDocumentBuilder();
             Document xmlDoc = docBuilder.parse(new InputSource(new StringReader(xmlData)));
-            xmlDocManager(xmlDoc, "relation");
-        } catch (Exception e) {
-            e.printStackTrace(); // Gestione dell'errore
-        }
+            return xmlDocManager(xmlDoc, "relation");
     }
 
     private Polygon xmlDocManager(Document xmlDoc, String type) {

@@ -1,5 +1,6 @@
 package it.unicam.cs.ids2324.project.Model.QueryDatabase;
 
+import it.unicam.cs.ids2324.project.Model.Itinerario;
 import it.unicam.cs.ids2324.project.Model.POI;
 import it.unicam.cs.ids2324.project.Model.Persona;
 import it.unicam.cs.ids2324.project.Model.RichestaAccreditamento;
@@ -23,6 +24,12 @@ public class InsertQuery {
                     richestaAccreditamento.getPersona().getMail() + "', " + "'" + richestaAccreditamento.getPersona().getPassword() + "', '"
                     + richestaAccreditamento.getPersona().getRuolo() + "', '" + richestaAccreditamento.getPersona().getDataDiNascita() + "', '"
                     +richestaAccreditamento.getMessaggio()+ "');";
+
+    }
+
+    public String inserisciItinerario(Itinerario itinerario) {
+        return "INSERT INTO itinerario (titolo, descrizione) " +
+                "VALUES ('" + itinerario.getTitolo() + "', '" + itinerario.getDescrizione() + "')";
 
     }
 

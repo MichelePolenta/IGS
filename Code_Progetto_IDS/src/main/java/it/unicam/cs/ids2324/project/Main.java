@@ -12,8 +12,13 @@ import static org.eclipse.persistence.expressions.ExpressionOperator.Log;
 
 
 public class Main {
-    public static void main(String[] args) throws ParserConfigurationException, SQLException, IOException, SAXException {
-        new ManagerOSM().executeQuery(new QueryOSM().getComune("Ancona"));
+    public static void main(String[] args) throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Che comune vuoi visitare?");
+        String comune = scanner.next();
+        System.out.println(comune);
+        System.out.println(new ManagerOSM().getOsmElementPolygon(new QueryOSM().getComune(comune)).coordinates());
+
     }
 
 }

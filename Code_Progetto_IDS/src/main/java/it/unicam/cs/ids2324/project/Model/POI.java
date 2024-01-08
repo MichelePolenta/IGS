@@ -52,12 +52,21 @@ public abstract class POI {
 
     @Override
     public String toString() {
-        return "POI" +
-                "comune=" + comune +
-                ", titolo='" + titolo + '\'' +
-                ", descrizione='" + descrizione + '\'' +
-                ", latitudine=" + lat +
-                ", longitudine=" + lon +
+        return "POI:" +
+                "comune=" + this.comune.getNome() +
+                ", titolo='" + this.getTitolo() + '\'' +
+                ", descrizione='" + this.getDescrizione() + '\'' +
+                ", latitudine=" + this.getLat() +
+                ", longitudine=" + this.getLon() +
+                ", tipologia=" + this.getTypeString() +
                 '}';
     }
+
+    public boolean getType() { return this.type; }
+
+    public String getTypeString() {
+        if (this.type) return "Fisico";
+        else return "Logico";
+    }
+
 }
