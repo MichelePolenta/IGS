@@ -2,12 +2,11 @@ package it.unicam.cs.ids2324.project.Model;
 
 import it.unicam.cs.ids2324.project.Model.QueryDatabase.DeleteQuery;
 import it.unicam.cs.ids2324.project.Model.QueryDatabase.InsertQuery;
-import it.unicam.cs.ids2324.project.Model.QueryDatabase.SelectQuery;
+import it.unicam.cs.ids2324.project.Model.QueryDatabase.UpdateQuery;
+import it.unicam.cs.ids2324.project.Model.QueryExecutor.QueryExecutor;
 import it.unicam.cs.ids2324.project.Model.QueryExecutor.QueryExecutorDelete;
-import it.unicam.cs.ids2324.project.Model.QueryExecutor.QueryExecutorInsert;
-import it.unicam.cs.ids2324.project.Model.QueryExecutor.QueryExecutorSelect;
+import it.unicam.cs.ids2324.project.Model.QueryExecutor.QueryExecutorUpdate;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class Gestore extends Persona {
@@ -21,25 +20,23 @@ public class Gestore extends Persona {
     }
 
 
-    public void accredita(RichestaAccreditamento richestaAccreditamento, boolean status) throws SQLException {
+    public void accredita(RichestaAccreditamento richestaAccreditamento, boolean status) throws Exception {
         DeleteQuery deleteQuery = new DeleteQuery();
         InsertQuery insertQuery = new InsertQuery();
-        QueryExecutorDelete queryExecutorDelete = new QueryExecutorDelete();
-        QueryExecutorInsert queryExecutorInsert = new QueryExecutorInsert();
-        if (status) accreditaTrue(deleteQuery, insertQuery, queryExecutorInsert, queryExecutorDelete, richestaAccreditamento);
-        else accreditaFalse(deleteQuery, queryExecutorDelete, richestaAccreditamento);
+        QueryExecutor queryExecutor = new QueryExecutor();
+        if (status) accreditaTrue(deleteQuery, insertQuery, queryExecutor, richestaAccreditamento);
+        else accreditaFalse(deleteQuery,queryExecutor, richestaAccreditamento);
     }
 
-    private void accreditaTrue(DeleteQuery deleteQuery, InsertQuery insertQuery, QueryExecutorInsert queryExecutorInsert, QueryExecutorDelete queryExecutorDelete, RichestaAccreditamento richestaAccreditamento) throws SQLException {
+    private void accreditaTrue(DeleteQuery deleteQuery, InsertQuery insertQuery,QueryExecutor queryExecutor, RichestaAccreditamento richestaAccreditamento) throws Exception {
         Persona persona = richestaAccreditamento.getPersona();
-        if (new QueryExecutorSelect().esistePersona(new SelectQuery().esistePersona(persona.getMail(), persona.getPassword())))
-            queryExecutorDelete.deletePersona(deleteQuery.cancellaPersona(persona.getMail(),persona.getPassword()));
-        queryExecutorDelete.deletePersona(deleteQuery.cancellaRichiesta(persona.getMail(), persona.getPassword()));
-        queryExecutorInsert.eseguiQueryInsert(insertQuery.inserisciPersona(persona));
+        QueryExecutorUpdate queryExecutorUpdate = new QueryExecutorUpdate();
+        queryExecutorUpdate.updateAccreditamento(persona.detectId(), richestaAccreditamento.getRuoloDacc());
+        new QueryExecutorDelete().cancellaRichiesta(richestaAccreditamento.detectId());
     }
 
-    private void accreditaFalse(DeleteQuery deleteQuery, QueryExecutorDelete queryExecutorDelete, RichestaAccreditamento richestaAccreditamento) throws SQLException {
-        queryExecutorDelete.deletePersona(deleteQuery.cancellaRichiesta(richestaAccreditamento.getPersona().getMail(), richestaAccreditamento.getPersona().getPassword()));
+    private void accreditaFalse(DeleteQuery deleteQuery, QueryExecutor queryExecutor, RichestaAccreditamento richestaAccreditamento) throws Exception {
+        new QueryExecutorDelete().cancellaRichiesta(richestaAccreditamento.detectId());
     }
 
     public boolean autorizzazione(String autorizzazione){

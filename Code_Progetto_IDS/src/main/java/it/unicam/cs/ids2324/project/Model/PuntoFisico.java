@@ -1,8 +1,12 @@
 package it.unicam.cs.ids2324.project.Model;
+
+import com.mapbox.geojson.Point;
+
+
 public class PuntoFisico extends POI {
 
-    public PuntoFisico(Comune comune,String titolo,String descrizione, double lat, double lon) throws Exception {
-        super(comune,titolo,descrizione,lat,lon);
+    public PuntoFisico(Comune comune, String titolo, String descrizione, Point point) throws Exception {
+        super(comune,titolo,descrizione,point);
         this.type=true;
     }
 
@@ -12,8 +16,8 @@ public class PuntoFisico extends POI {
                 "comune=" + this.comune.getNome() +
                 ", titolo='" + this.getTitolo() + '\'' +
                 ", descrizione='" + this.getDescrizione() + '\'' +
-                ", latitudine=" + this.getLat() +
-                ", longitudine=" + this.getLon() +
+                ", latitudine=" + this.getPoint().latitude() +
+                ", longitudine=" + this.getPoint().longitude() +
                 ", tipologia=" + this.getTypeString() +
                 '}';
     }

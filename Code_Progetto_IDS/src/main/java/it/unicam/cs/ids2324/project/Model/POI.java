@@ -1,34 +1,35 @@
 package it.unicam.cs.ids2324.project.Model;
 
 import com.mapbox.geojson.Point;
+import it.unicam.cs.ids2324.project.Model.QueryDatabase.SelectQuery;
 import it.unicam.cs.ids2324.project.Model.QueryExecutor.ManagerOSM;
+import it.unicam.cs.ids2324.project.Model.QueryExecutor.QueryExecutorSelect;
+
+import java.sql.SQLException;
 
 public abstract class POI {
 
     protected Comune comune;
-
     protected String titolo;
-
     protected String descrizione;
-
-    protected double lat,lon;
-
+    protected Point point;
     protected boolean type;
 
-    public POI(Comune comune,String titolo,String descrizione, double lat, double lon) throws Exception {
-        if (new ManagerOSM().internoAlComune(com.mapbox.geojson.Point.fromLngLat(lon, lat), comune))
+    public POI(Comune comune,String titolo,String descrizione, Point point) throws Exception {
+        //if (new ManagerOSM().internoAlComune(point, comune))
         this.comune= comune;
-        else throw new Exception("Comune inserito errato rispetto alle coordinate!");
+        //else throw new Exception("Comune inserito errato rispetto alle coordinate!");
         this.titolo=titolo;
         this.descrizione=descrizione;
-        this.lat=lat;
-        this.lon=lon;
+        this.point = point;
     }
 
-    public boolean detectComune(Point point){
-        return false;
+    public int detectId() throws SQLException {
+        QueryExecutorSelect select = new QueryExecutorSelect();
+        int id = select.getIdPoi(this.getTitolo(), this.getDescrizione());
+        select.getConnection().close();
+        return id;
     }
-
 
     public Comune getComune() {
         return this.comune;
@@ -36,14 +37,6 @@ public abstract class POI {
 
     public String getDescrizione() {
         return this.descrizione;
-    }
-
-    public double getLat() {
-        return this.lat;
-    }
-
-    public double getLon() {
-        return this.lon;
     }
 
     public String getTitolo() {
@@ -56,8 +49,8 @@ public abstract class POI {
                 "comune=" + this.comune.getNome() +
                 ", titolo='" + this.getTitolo() + '\'' +
                 ", descrizione='" + this.getDescrizione() + '\'' +
-                ", latitudine=" + this.getLat() +
-                ", longitudine=" + this.getLon() +
+                ", latitudine=" + this.getPoint().latitude() +
+                ", longitudine=" + this.getPoint().longitude() +
                 ", tipologia=" + this.getTypeString() +
                 '}';
     }
@@ -69,4 +62,7 @@ public abstract class POI {
         else return "Logico";
     }
 
+    public Point getPoint() {
+        return point;
+    }
 }

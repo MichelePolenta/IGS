@@ -4,19 +4,19 @@ import it.unicam.cs.ids2324.project.Model.Persona;
 
 public class DeleteQuery {
 
-    public String cancellaPoi(Double lat,Double lon){
-        return "DELETE FROM poi WHERE latitudine='" + lat + "' AND longitudine='" + lon + "';";
+    public String cancellaPoi(){
+        return "DELETE FROM poi WHERE latitudine = ? AND longitudine = ?";
     }
 
-    public String cancellaPersona(String mail, String password){
-        return "DELETE FROM persona WHERE mail='" + mail + "' AND password='" + password + "';";
+    public String cancellaPersona(){
+        return "DELETE FROM persona WHERE mail = ? AND password = ?";
     }
-     public String cancellaRichiesta(String mail, String password){
-         return "DELETE FROM richieste_accreditamento WHERE mail='" + mail + "' AND password='" + password + "';";
+     public String cancellaRichiesta(){
+         return "DELETE FROM richieste_accreditamento WHERE id_richiesta = ?";
      }
 
-    public String cancellaItinerario(String titolo, String descrizione){
-        return "DELETE FROM itinerario WHERE titolo='" + titolo + "' AND descrizione='" + descrizione + "';";
+    public String cancellaItinerario(){
+        return "DELETE FROM itinerario WHERE titolo = ? AND descrizione = ?";
     }
 
 

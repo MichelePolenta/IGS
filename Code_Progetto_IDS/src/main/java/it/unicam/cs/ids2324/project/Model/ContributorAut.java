@@ -2,11 +2,10 @@ package it.unicam.cs.ids2324.project.Model;
 
 
 import it.unicam.cs.ids2324.project.Model.QueryDatabase.InsertQuery;
+import it.unicam.cs.ids2324.project.Model.QueryExecutor.QueryExecutor;
 import it.unicam.cs.ids2324.project.Model.QueryExecutor.QueryExecutorInsert;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class ContributorAut extends Persona {
 
@@ -16,11 +15,11 @@ public class ContributorAut extends Persona {
     }
 
     public void inserimento(POI poi) throws SQLException {
-        new QueryExecutorInsert().eseguiQueryInsert(new InsertQuery().inserisciPOI(poi));
+        new QueryExecutorInsert().inserisciPo(poi);
     }
 
-    public boolean inserimento(Itinerario itinerario){
-        return false;
+    public void inserimento(Itinerario itinerario)throws  SQLException{
+        new QueryExecutorInsert().inserisciItinerario(itinerario);
     }
 
     public void modifica (POI poi){

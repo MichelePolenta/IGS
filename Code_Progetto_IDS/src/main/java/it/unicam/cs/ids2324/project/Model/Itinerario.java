@@ -1,33 +1,39 @@
 package it.unicam.cs.ids2324.project.Model;
 
-import javax.print.attribute.standard.Media;
+import it.unicam.cs.ids2324.project.Model.QueryDatabase.SelectQuery;
+import it.unicam.cs.ids2324.project.Model.QueryExecutor.QueryExecutorSelect;
+
+import java.io.File;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class Itinerario {
 
+
     private String titolo;
     private String descrizione;
     private ArrayList<POI> punti;
-    private ArrayList<Media> contenuti;
+    private ArrayList<File> contenuti;
+
 
     public Itinerario(String titolo, String  descrizione, ArrayList<POI> punti) throws  Exception{
-        if (punti.size() <2) throw  new Exception("L'itinerario deve contenere almeno due punti");
+        //if (punti.size() <2) throw  new Exception("L'itinerario deve contenere almeno due punti");
         this.titolo  = titolo;
         this.descrizione = descrizione;
-        this.punti = punti;
+        //this.punti = punti;
     }
 
     public void  aggiungiPOI(POI poi){
         this.punti.add(poi);
     }
 
-    public void addMedia(Media media){
+    public void addMedia(File media){
         this.contenuti.add(media);
     }
 
-    public void addMedia(ArrayList<Media> medias){
+    public void addMedia(ArrayList<File> medias){
         this.contenuti.addAll(medias);
     }
 
@@ -50,7 +56,7 @@ public class Itinerario {
         return punti;
     }
 
-    public List<Media> getContenuti() {
+    public List<File> getContenuti() {
         return contenuti;
     }
 
@@ -60,6 +66,13 @@ public class Itinerario {
 
     public String getTitolo() {
         return titolo;
+    }
+
+    public int detectId()throws SQLException{
+        QueryExecutorSelect select = new QueryExecutorSelect();
+        int id = select.getId(new SelectQuery().getIdItinerario(this.getTitolo(), this.getDescrizione()));
+        select.getConnection().close();
+        return id;
     }
 
 

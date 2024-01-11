@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class Accreditamento {
 
-    public void accredita(Gestore gestore, RichestaAccreditamento richestaAccreditamento, boolean status) throws SQLException {
+    public void accredita(Gestore gestore, RichestaAccreditamento richestaAccreditamento, boolean status) throws Exception {
         gestore.accredita(richestaAccreditamento, status);
     }
 

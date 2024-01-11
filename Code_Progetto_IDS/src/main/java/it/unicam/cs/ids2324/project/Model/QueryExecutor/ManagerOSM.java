@@ -1,5 +1,6 @@
 package it.unicam.cs.ids2324.project.Model.QueryExecutor;
 
+import com.mapbox.geojson.PointAsCoordinatesTypeAdapter;
 import com.mapbox.geojson.Polygon;
 import com.mapbox.turf.TurfJoins;
 import it.unicam.cs.ids2324.project.Model.Comune;
@@ -48,10 +49,7 @@ public class ManagerOSM {
         return  parsePolygonXML(executeResponse(query));
     }
 
-
-
-
-    public PuntoFisico getOsmElementPoi(String query,String comune) throws Exception {
+    public PuntoFisico getOsmElementPoi(String query,Comune comune) throws Exception {
         return parsePoiXML(executeResponse(query),comune);
     }
 
@@ -68,19 +66,21 @@ public class ManagerOSM {
     }
 
 
-    private PuntoFisico parsePoiXML(String xmlData, String comune) throws Exception {
+    private PuntoFisico parsePoiXML(String xmlData, Comune comune) throws Exception {
             DocumentBuilderFactory dbfac = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = dbfac.newDocumentBuilder();
             Document xmlDoc = docBuilder.parse(new InputSource(new StringReader(xmlData)));
             Element nodeElement = (Element) xmlDoc.getElementsByTagName("node").item(0);
             String name = nodeElement.getElementsByTagName("tag").item(indexFinder(nodeElement,"name")).
                     getAttributes().getNamedItem("v").getTextContent();
-            return new PuntoFisico(new Comune(comune), name, "", 0, 0);
+            double lat = Double.parseDouble(nodeElement.getAttribute("lat"));
+            double lon = Double.parseDouble(nodeElement.getAttribute("lon"));
+            return new PuntoFisico(comune, name, "Punto ricavati da OpenStreetMap", Point.fromLngLat(lon,lat));
     }
 
-    private int indexFinder(Element node, String element){
+    private int indexFinder(Element node, String name){
         for (int i = 0; i < node.getElementsByTagName("tag").getLength(); i++) {
-            if (node.getElementsByTagName("tag").item(i).getAttributes().getNamedItem("k").getTextContent().equals(element)){
+            if (node.getElementsByTagName("tag").item(i).getAttributes().getNamedItem("k").getTextContent().equals(name)){
                 return i;
             }
         }
@@ -104,7 +104,7 @@ public class ManagerOSM {
                 for (int j = 0; j < ndNodes.getLength(); j++) {
                     double lat = Double.parseDouble(ndNodes.item(j).getAttributes().getNamedItem("lat").getTextContent());
                     double lon = Double.parseDouble(ndNodes.item(j).getAttributes().getNamedItem("lon").getTextContent());
-                    results.add(com.mapbox.geojson.Point.fromLngLat(lon, lat));
+                    results.add(Point.fromLngLat(lon, lat));
                 }
             }
             Polygon boundary = Polygon.fromLngLats(Collections.singletonList(results));
@@ -120,7 +120,7 @@ public class ManagerOSM {
     }
 
     public boolean verificaAssociazionePOI(POI poi, double lon, double lat) {
-        return poi.getLon() == lon && poi.getLat() == lat;
+        return poi.getPoint().longitude() == lon && poi.getPoint().latitude() == lat;
     }
 
 

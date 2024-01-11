@@ -1,4 +1,7 @@
 package it.unicam.cs.ids2324.project.Model;
+import it.unicam.cs.ids2324.project.Model.QueryDatabase.SelectQuery;
+import it.unicam.cs.ids2324.project.Model.QueryExecutor.QueryExecutorSelect;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -24,7 +27,6 @@ public abstract class Persona {
         this.cognome = cognome;
         this.mail = mail;
         this.password = password;
-        this.cognome = cognome;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.dataDiNascita = LocalDate.parse(dataDiNascita, formatter);
     }
@@ -65,6 +67,9 @@ public abstract class Persona {
 
     void salvaInformazioni(String text){}
 
+    public int detectId()throws Exception{
+        return new QueryExecutorSelect().getId(new SelectQuery().getIdPersona(this.getMail(), this.getPassword()));
+    }
 
     public Comune getComune(){
         return this.comune;
