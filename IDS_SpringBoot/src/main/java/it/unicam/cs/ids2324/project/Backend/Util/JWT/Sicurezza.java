@@ -51,6 +51,7 @@ public class Sicurezza {
                 .requestMatchers("/contributor/**").hasAuthority(Ruolo.CONTR.name())
                 .requestMatchers("/contributoraut/**").hasAuthority(Ruolo.CONTRAUT.name())
                 .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/map/**").permitAll()
                 .anyRequest().authenticated()
         );
         http.authenticationProvider(providerAutenticazione());
