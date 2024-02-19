@@ -23,7 +23,8 @@ ELEPHANT SQL :elephant:
 
 La base di dati è stata creata tramite PostgreSQL, successivamente caricata su ElephantSql, in maniera di rendere il db accessibile ovunque al di fuori del proprio dispositivo.
 
-**JWT Authentication**
+**JWT AUTHENTICATION**
+
 Affinchè la registazione e relativo login dell'utente finale possa essere sicura, il codice sarà in grado di riptare la password nel momento dell'accesso, restituendo un token 
 che dopo il login sarà rilasciato all'utente, in maniera anche da permettergli di accedere solo a determinate funzionalità.
 Infatti se, ad esempio, l'utente si è registrato come contributor, in questo modo non gli sarà consentito di accedere alle funzionalità del contributor autorizzato o di ruoli 
