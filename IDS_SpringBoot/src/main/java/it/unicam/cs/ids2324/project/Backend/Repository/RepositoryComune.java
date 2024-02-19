@@ -1,4 +1,4 @@
-package it.unicam.cs.ids2324.project.Backend.Resources;
+package it.unicam.cs.ids2324.project.Backend.Repository;
 
 import it.unicam.cs.ids2324.project.Backend.Model.Comuni;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
  * Utilizzata per interagire con la tabella "comuni" nel database.
  */
 @Repository
-public interface ResourceComune extends JpaRepository<Comuni, Integer> {
+public interface RepositoryComune extends JpaRepository<Comuni, Integer> {
 
     Comuni findComuneByNome(String nome);
 

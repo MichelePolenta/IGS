@@ -4,6 +4,7 @@ import it.unicam.cs.ids2324.project.Backend.Model.Itinerario;
 import it.unicam.cs.ids2324.project.Backend.Model.PuntoFisico;
 import it.unicam.cs.ids2324.project.Backend.Model.PuntoLogico;
 import it.unicam.cs.ids2324.project.Backend.Model.POI;
+import org.springframework.security.core.parameters.P;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +67,16 @@ public interface ModificheManager {
         for (POI poi: pois) {
             if (!poi.getComune().getNome().equals(itinerario.getComune().getNome()))
                 return false;
+        }
+        return true;
+    }
+
+    default boolean verificaPoiItinerario(POI poi) {
+        if (poi.getItinerari() != null) {
+            for (Itinerario itinerario : poi.getItinerari()) {
+                if (itinerario.getPoi().size() == 2)
+                    return false;
+            }
         }
         return true;
     }

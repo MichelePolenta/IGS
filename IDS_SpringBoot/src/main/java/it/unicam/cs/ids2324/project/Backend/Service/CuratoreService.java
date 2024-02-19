@@ -4,10 +4,10 @@ import it.unicam.cs.ids2324.project.Backend.Exception.RichiestaException;
 import it.unicam.cs.ids2324.project.Backend.Model.Itinerario;
 import it.unicam.cs.ids2324.project.Backend.Model.RichiestePoi.ModificaPoi;
 import it.unicam.cs.ids2324.project.Backend.Model.Stati;
-import it.unicam.cs.ids2324.project.Backend.Resources.ResourceItinerario;
-import it.unicam.cs.ids2324.project.Backend.Resources.ResourcePOI;
-import it.unicam.cs.ids2324.project.Backend.Resources.ResourceRichiesteItinerario;
-import it.unicam.cs.ids2324.project.Backend.Resources.ResourceRichiestePoi;
+import it.unicam.cs.ids2324.project.Backend.Repository.RepositoryItinerario;
+import it.unicam.cs.ids2324.project.Backend.Repository.RepositoryPOI;
+import it.unicam.cs.ids2324.project.Backend.Repository.RepositoryRichiesteItinerario;
+import it.unicam.cs.ids2324.project.Backend.Repository.RepositoryRichiestePoi;
 import it.unicam.cs.ids2324.project.Backend.Model.POI;
 import it.unicam.cs.ids2324.project.Backend.Model.RichiesteItinerario.ModificaItinerario;
 import it.unicam.cs.ids2324.project.Backend.Model.RichiesteItinerario.RichiestaItinerario;
@@ -26,30 +26,30 @@ import java.util.List;
 @Service
 public class CuratoreService implements ModificheManager{
 
-    private final ResourcePOI resourcePOI;
-    private final ResourceItinerario resourceItinerario;
-    private final ResourceRichiestePoi resourceRichiestePoi;
-    private final ResourceRichiesteItinerario resourceRichiestaItinerario;
+    private final RepositoryPOI repositoryPOI;
+    private final RepositoryItinerario repositoryItinerario;
+    private final RepositoryRichiestePoi repositoryRichiestePoi;
+    private final RepositoryRichiesteItinerario resourceRichiestaItinerario;
 
     @Autowired
-    public CuratoreService(ResourcePOI resourcePOI, ResourceItinerario resourceItinerario, ResourceRichiestePoi resourceRichiestaPoi,
-                           ResourceRichiesteItinerario resourceRichiesteItinerario)
+    public CuratoreService(RepositoryPOI repositoryPOI, RepositoryItinerario repositoryItinerario, RepositoryRichiestePoi resourceRichiestaPoi,
+                           RepositoryRichiesteItinerario repositoryRichiesteItinerario)
     {
-        this.resourcePOI = resourcePOI;
-        this.resourceItinerario = resourceItinerario;
-        this.resourceRichiestePoi = resourceRichiestaPoi;
-        this.resourceRichiestaItinerario = resourceRichiesteItinerario;
+        this.repositoryPOI = repositoryPOI;
+        this.repositoryItinerario = repositoryItinerario;
+        this.repositoryRichiestePoi = resourceRichiestaPoi;
+        this.resourceRichiestaItinerario = repositoryRichiesteItinerario;
     }
 
     public void accettaRichiestaDiModifica(ModificaItinerario modificaItinerario) throws RichiestaException{
             if (modificaItinerario == null)
                 throw new RichiestaException("Bisogna selezionare una richiesta da accettare");
             Itinerario itinerario = modificaItinerario.getItinerario();
-            Itinerario vecchioItinerario = resourceItinerario.findById(modificaItinerario.getVecchioItinerario()).get();
+            Itinerario vecchioItinerario = repositoryItinerario.findById(modificaItinerario.getVecchioItinerario()).get();
             setModifiche(vecchioItinerario, itinerario);
             modificaItinerario.changeState(Stati.ACCETTATA);
-            resourceItinerario.delete(itinerario);
-            resourceItinerario.save(vecchioItinerario);
+            repositoryItinerario.delete(itinerario);
+            repositoryItinerario.save(vecchioItinerario);
             modificaItinerario.setItinerario(null);
             resourceRichiestaItinerario.save(modificaItinerario);
     }
@@ -58,7 +58,7 @@ public class CuratoreService implements ModificheManager{
         if (richiestaItinerario == null)
             throw new RichiestaException("Bisogna selezionare una richiesta da accettare");
         richiestaItinerario.getItinerario().setVisible(true);
-        resourceItinerario.save(richiestaItinerario.getItinerario());
+        repositoryItinerario.save(richiestaItinerario.getItinerario());
         richiestaItinerario.changeState(Stati.ACCETTATA);
         resourceRichiestaItinerario.save(richiestaItinerario);
     }
@@ -68,9 +68,9 @@ public class CuratoreService implements ModificheManager{
         if (richiestaPoi == null)
             throw new RichiestaException("Bisogna selezionare una richiesta da accettare");
         richiestaPoi.getPoi().setVisible(true);
-        resourcePOI.save(richiestaPoi.getPoi());
+        repositoryPOI.save(richiestaPoi.getPoi());
         richiestaPoi.changeState(Stati.ACCETTATA);
-        resourceRichiestePoi.save(richiestaPoi);
+        repositoryRichiestePoi.save(richiestaPoi);
     }
 
     public void accettaRichistaDiEliminazione(RichiestaPoi richiestaPoi)throws RichiestaException{
@@ -78,16 +78,16 @@ public class CuratoreService implements ModificheManager{
             throw new RichiestaException("Bisogna selezionare una richiesta da accettare");
         POI poi = richiestaPoi.getPoi();
         poi.setComune(null);
-        resourcePOI.delete(poi);
+        repositoryPOI.delete(poi);
         richiestaPoi.changeState(Stati.ACCETTATA);
         richiestaPoi.setPoi(null);
-        resourceRichiestePoi.save(richiestaPoi);
+        repositoryRichiestePoi.save(richiestaPoi);
     }
 
     public void accettaRichiestaEliminazione(RichiestaItinerario richiestaItinerario)throws RichiestaException{
         if (richiestaItinerario == null)
             throw new RichiestaException("Bisogna selezionare una richiesta da accettare");
-        resourceItinerario.delete(richiestaItinerario.getItinerario());
+        repositoryItinerario.delete(richiestaItinerario.getItinerario());
         richiestaItinerario.changeState(Stati.ACCETTATA);
         richiestaItinerario.setItinerario(null);
         resourceRichiestaItinerario.save(richiestaItinerario);
@@ -100,11 +100,11 @@ public class CuratoreService implements ModificheManager{
             POI vecchioPoi = modificaPoi.getVecchioPoi();
             POI nuovoPoi = modificaPoi.getPoi();
             vecchioPoi = setModifiche(vecchioPoi, nuovoPoi);
-            resourcePOI.save(vecchioPoi);
-            resourcePOI.delete(nuovoPoi);
+            repositoryPOI.save(vecchioPoi);
+            repositoryPOI.delete(nuovoPoi);
             modificaPoi.changeState(Stati.ACCETTATA);
             modificaPoi.setPoi(null);
-            resourceRichiestePoi.save(modificaPoi);
+            repositoryRichiestePoi.save(modificaPoi);
     }
 
 
@@ -112,7 +112,7 @@ public class CuratoreService implements ModificheManager{
         if (richiestaPoi == null)
             throw new RichiestaException("Bisogna selezionare una richiesta da rifiutare");
         richiestaPoi.changeState(Stati.RIFIUTATA);
-        resourceRichiestePoi.save(richiestaPoi);
+        repositoryRichiestePoi.save(richiestaPoi);
     }
 
     public void rifiutaRichistaDiEliminazione(RichiestaItinerario richiestaItinerario) throws RichiestaException{
@@ -128,7 +128,7 @@ public class CuratoreService implements ModificheManager{
             ModificaItinerario Itinerario = (ModificaItinerario) modificaItinerario;
             Itinerario.changeState(Stati.RIFIUTATA);
             resourceRichiestaItinerario.save(Itinerario);
-            resourceItinerario.deleteById(Itinerario.getItinerario().getId());
+            repositoryItinerario.deleteById(Itinerario.getItinerario().getId());
     }
 
     public void rifiutaRichistaDiInserimento(RichiestaPoi richiestaPoi)throws RichiestaException{
@@ -137,9 +137,9 @@ public class CuratoreService implements ModificheManager{
         richiestaPoi.changeState(Stati.RIFIUTATA);
         POI poi = richiestaPoi.getPoi();
         poi.setComune(null);
-        resourcePOI.delete(poi);
+        repositoryPOI.delete(poi);
         richiestaPoi.setPoi(null);
-        resourceRichiestePoi.save(richiestaPoi);
+        repositoryRichiestePoi.save(richiestaPoi);
     }
 
     public void rifiutaRichiestaInserimento(RichiestaItinerario richiestaItinerario)throws RichiestaException{
@@ -147,28 +147,28 @@ public class CuratoreService implements ModificheManager{
             throw new RichiestaException("Bisogna selezionare una richiesta da rifiutare");
         richiestaItinerario.changeState(Stati.RIFIUTATA);
         resourceRichiestaItinerario.save(richiestaItinerario);
-        resourceItinerario.delete(richiestaItinerario.getItinerario());
+        repositoryItinerario.delete(richiestaItinerario.getItinerario());
     }
 
     public void rifiutaRichiestaModifica(RichiestaPoi richiestaPoi)throws RichiestaException{
         if (richiestaPoi == null)
             throw new RichiestaException("Bisogna selezionare una richiesta da rifiutare");
             richiestaPoi.changeState(Stati.RIFIUTATA);
-            resourcePOI.deleteById(richiestaPoi.getPoi().getId());
+            repositoryPOI.deleteById(richiestaPoi.getPoi().getId());
             richiestaPoi.setPoi(null);
-            resourceRichiestePoi.save(richiestaPoi);
+            repositoryRichiestePoi.save(richiestaPoi);
     }
 
     public POI getSinglePoi(int id){
-        return resourcePOI.findById(id).get();
+        return repositoryPOI.findById(id).get();
     }
 
     public Itinerario getSingleItinerario(int id){
-        return resourceItinerario.findById(id).get();
+        return repositoryItinerario.findById(id).get();
     }
 
     public List<RichiestaPoi> getRichiestaPoiByStato(Stati stato){
-        return resourceRichiestePoi.getRichiestaPoiByStato(stato);
+        return repositoryRichiestePoi.getRichiestaPoiByStato(stato);
     }
 
     public List<RichiestaItinerario> getRichiestaItinerarioByStato(Stati stato){
@@ -176,7 +176,7 @@ public class CuratoreService implements ModificheManager{
     }
 
     public RichiestaPoi getRichiestaPoiById(int id){
-        return resourceRichiestePoi.findById(id).get();
+        return repositoryRichiestePoi.findById(id).get();
     }
 
     public RichiestaItinerario getRichiestaItinerarioById(int id){

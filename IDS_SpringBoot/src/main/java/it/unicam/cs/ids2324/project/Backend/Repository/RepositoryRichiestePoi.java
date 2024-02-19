@@ -1,4 +1,4 @@
-package it.unicam.cs.ids2324.project.Backend.Resources;
+package it.unicam.cs.ids2324.project.Backend.Repository;
 
 import it.unicam.cs.ids2324.project.Backend.Model.RichiestePoi.RichiestaPoi;
 import it.unicam.cs.ids2324.project.Backend.Model.Stati;
@@ -13,7 +13,7 @@ import java.util.List;
  * Utilizzata per interagire con la tabella "Richiesta POI" nel database.
  */
 @Repository
-public interface ResourceRichiestePoi extends JpaRepository<RichiestaPoi, Integer> {
+public interface RepositoryRichiestePoi extends JpaRepository<RichiestaPoi, Integer> {
 
     public List<RichiestaPoi> getRichiestaPoiByStato(Stati stato);
 

@@ -33,12 +33,10 @@ import java.util.List;
 @RestController
 public class ControllerVisualizzazione {
 
-    @Autowired
-    protected ComuneService comuneService;
+    @Autowired ComuneService comuneService;
 
     @Autowired
     private VisualizzazioneService visualizzazioneService;
-
 
 
     @GetMapping("/allPoi")
@@ -50,6 +48,16 @@ public class ControllerVisualizzazione {
     @GetMapping("/allItinerari")
     public ResponseEntity<List<Itinerario>> getAllItinerari(){
         return new ResponseEntity<>(visualizzazioneService.getAllItinerari(), HttpStatus.OK);
+    }
+
+    @GetMapping("/singlePoi/{id}")
+    public ResponseEntity<POI> getSinglePoi(@PathVariable("id") int id){
+        return  ResponseEntity.ok(visualizzazioneService.getSinglePoi(id));
+    }
+
+    @GetMapping("/singleIti/{id}")
+    public ResponseEntity<Itinerario> getSingleIti(@PathVariable("id")int id){
+        return  ResponseEntity.ok(visualizzazioneService.getSingleItinerario(id));
     }
 
 }

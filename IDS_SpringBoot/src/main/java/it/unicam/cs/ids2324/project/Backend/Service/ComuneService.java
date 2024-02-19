@@ -1,11 +1,9 @@
 package it.unicam.cs.ids2324.project.Backend.Service;
 
-import it.unicam.cs.ids2324.project.Backend.Resources.ResourceComune;
+import it.unicam.cs.ids2324.project.Backend.Repository.RepositoryComune;
 import it.unicam.cs.ids2324.project.Backend.Model.Comuni;
-import it.unicam.cs.ids2324.project.Backend.Resources.ResourcePOI;
+import it.unicam.cs.ids2324.project.Backend.Repository.RepositoryPOI;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * Classe di servizio che gestisce le operazioni legate all'entità Comuni.
@@ -18,14 +16,14 @@ import java.util.List;
 @Service
 public class ComuneService {
 
-    private final ResourceComune resourceComune;
+    private final RepositoryComune repositoryComune;
 
-    public  ComuneService(ResourceComune resourceComune, ResourcePOI resourcePOI){
-        this.resourceComune = resourceComune;
+    public  ComuneService(RepositoryComune repositoryComune){
+        this.repositoryComune = repositoryComune;
     }
 
     public Comuni findComuneByNome(String nome){
-        return  resourceComune.findComuneByNome(nome);
+        return  repositoryComune.findComuneByNome(nome);
     }
 
 

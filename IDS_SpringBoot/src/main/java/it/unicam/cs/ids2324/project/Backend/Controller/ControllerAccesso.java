@@ -5,7 +5,7 @@ import it.unicam.cs.ids2324.project.Backend.Util.JWT.GeneraJWT;
 import it.unicam.cs.ids2324.project.Backend.Util.JWT.Credenziali;
 import it.unicam.cs.ids2324.project.Backend.Util.JWT.DTOManager;
 import it.unicam.cs.ids2324.project.Backend.Model.Persona;
-import it.unicam.cs.ids2324.project.Backend.Resources.ResourceComune;
+import it.unicam.cs.ids2324.project.Backend.Repository.RepositoryComune;
 import it.unicam.cs.ids2324.project.Backend.Service.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -46,19 +46,19 @@ public class ControllerAccesso {
     private final PasswordEncoder passwordEncoder;
     private final GeneraJWT generaJwt;
     private final PersonaService personaService;
-    private final ResourceComune resourceComune;
+    private final RepositoryComune repositoryComune;
 
 
     @Autowired
     public ControllerAccesso(AuthenticationManager authenticationManager,
                           PasswordEncoder passwordEncoder,
                           GeneraJWT generaJwt,
-                          PersonaService personaService, ResourceComune resourceComune) {
+                          PersonaService personaService, RepositoryComune repositoryComune) {
         this.authenticationManager = authenticationManager;
         this.passwordEncoder = passwordEncoder;
         this.generaJwt = generaJwt;
         this.personaService = personaService;
-        this.resourceComune = resourceComune;
+        this.repositoryComune = repositoryComune;
     }
 
     @PostMapping("/login")
@@ -77,7 +77,7 @@ public class ControllerAccesso {
     public ResponseEntity<Object> signup(@RequestBody Persona persona, @RequestHeader("nomeComune") String nomeComune) throws Exception{
         try {
             persona.setPassword(this.passwordEncoder.encode(persona.getPassword()));
-            persona.setComune(resourceComune.findComuneByNome(nomeComune));
+            persona.setComune(repositoryComune.findComuneByNome(nomeComune));
             this.personaService.addPersona(persona);
             return ResponseEntity.ok("Persona aggiunta");
         } catch (CredenzialiException e) {

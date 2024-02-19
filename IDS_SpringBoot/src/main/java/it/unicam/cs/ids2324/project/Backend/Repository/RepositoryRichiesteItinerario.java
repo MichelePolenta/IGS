@@ -1,4 +1,4 @@
-package it.unicam.cs.ids2324.project.Backend.Resources;
+package it.unicam.cs.ids2324.project.Backend.Repository;
 
 import it.unicam.cs.ids2324.project.Backend.Model.RichiesteItinerario.RichiestaItinerario;
 import it.unicam.cs.ids2324.project.Backend.Model.Stati;
@@ -13,7 +13,7 @@ import java.util.List;
  * Utilizzata per interagire con la tabella "Richiesta Itinerario" nel database.
  */
 @Repository
-public interface ResourceRichiesteItinerario extends JpaRepository<RichiestaItinerario, Integer> {
+public interface RepositoryRichiesteItinerario extends JpaRepository<RichiestaItinerario, Integer> {
 
     public List<RichiestaItinerario> getRichiestaItinerarioByStato(Stati stato);
 

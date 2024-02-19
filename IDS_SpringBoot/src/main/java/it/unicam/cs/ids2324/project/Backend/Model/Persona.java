@@ -27,25 +27,25 @@ import java.util.regex.Pattern;
 @Table(name = "Persona")
 public  class Persona {
 
-    protected String nome;
-    protected String cognome;
+    private String nome;
+    private String cognome;
 
     @Id
     @Column(name = "mail")
-    protected String mail;
+    private String mail;
 
-    protected String password;
+    private String password;
 
     @ManyToOne
     @JoinColumn(name = "comune")
-    protected Comuni comune;
+    private Comuni comune;
 
     @Column(name = "datadinascita")
-    protected LocalDate dataDiNascita;
+    private LocalDate dataDiNascita;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ruolo")
-    protected Ruolo ruolo;
+    private Ruolo ruolo;
 
 
     public Persona(String nome, String cognome, String mail, String password, Comuni comune, String dataDiNascita, Ruolo ruolo) {

@@ -54,7 +54,7 @@ public abstract class RichiestaPoi {
         this.stato = state;
     }
 
-    public RichiestaPoi(){
+        public RichiestaPoi(){
         this.stato= Stati.ATTESA;
     }
 

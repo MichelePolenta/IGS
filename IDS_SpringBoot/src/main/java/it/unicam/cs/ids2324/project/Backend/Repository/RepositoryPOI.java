@@ -1,7 +1,6 @@
-package it.unicam.cs.ids2324.project.Backend.Resources;
+package it.unicam.cs.ids2324.project.Backend.Repository;
 
 import it.unicam.cs.ids2324.project.Backend.Model.POI;
-import jakarta.annotation.Resource;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +12,7 @@ import java.util.List;
  * Utilizzata per interagire con la tabella "POI" nel database.
  */
 @Repository
-public interface ResourcePOI extends JpaRepository<POI, Integer> {
+public interface RepositoryPOI extends JpaRepository<POI, Integer> {
 
     List<POI> findAllByVisible(boolean visible);
 

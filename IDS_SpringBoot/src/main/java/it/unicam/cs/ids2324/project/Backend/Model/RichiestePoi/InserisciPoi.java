@@ -16,7 +16,6 @@ public class InserisciPoi extends RichiestaPoi{
     public InserisciPoi(){}
 
     public InserisciPoi(POI poi ){
-
         super(poi);
     }
 

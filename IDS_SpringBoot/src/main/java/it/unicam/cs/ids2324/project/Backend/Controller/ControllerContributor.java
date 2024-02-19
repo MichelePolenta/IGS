@@ -143,13 +143,4 @@ public class ControllerContributor extends ControllerVisualizzazione{
         }
     }
 
-    @GetMapping("/singlePoi/{id}")
-    public ResponseEntity<POI> getSinglePoi(@PathVariable("id") int id){
-        return  ResponseEntity.ok(contributorService.getSinglePoi(id));
-    }
-
-    @GetMapping("/singleIti/{id}")
-    public ResponseEntity<Itinerario> getSingleIti(@PathVariable("id")int id){
-        return  ResponseEntity.ok(contributorService.getSingleItinerario(id));
-    }
 }

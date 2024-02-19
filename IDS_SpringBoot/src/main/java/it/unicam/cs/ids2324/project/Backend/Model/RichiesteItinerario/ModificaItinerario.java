@@ -16,7 +16,7 @@ public class ModificaItinerario extends RichiestaItinerario{
     private int vecchioitinerario;
 
 
-    public ModificaItinerario(int vecchioitinerario, Itinerario itinerario ) {
+        public ModificaItinerario(int vecchioitinerario, Itinerario itinerario ) {
         super(itinerario);
         this.vecchioitinerario = vecchioitinerario;
     }

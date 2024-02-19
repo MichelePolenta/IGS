@@ -4,8 +4,6 @@ import it.unicam.cs.ids2324.project.Backend.Model.Itinerario;
 import it.unicam.cs.ids2324.project.Backend.Model.POI;
 import it.unicam.cs.ids2324.project.Backend.Model.RichiesteItinerario.ModificaItinerario;
 import it.unicam.cs.ids2324.project.Backend.Model.RichiesteItinerario.RichiestaItinerario;
-import it.unicam.cs.ids2324.project.Backend.Resources.ResourceItinerario;
-import it.unicam.cs.ids2324.project.Backend.Resources.ResourceRichiesteItinerario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +15,8 @@ import java.util.List;
 
 public class FactoryModificaItinerario implements FactoryRichiestaItinerario {
 
-    private final ResourceItinerario resourceItinerario;
 
-    public FactoryModificaItinerario(ResourceItinerario resourceItinerario ){
-        this.resourceItinerario = resourceItinerario;
-    }
+
 
     @Override
     public RichiestaItinerario create(Itinerario itinerario) throws Exception {

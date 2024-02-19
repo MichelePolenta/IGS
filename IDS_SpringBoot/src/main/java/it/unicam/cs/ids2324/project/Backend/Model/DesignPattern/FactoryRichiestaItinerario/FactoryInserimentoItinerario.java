@@ -3,8 +3,6 @@ package it.unicam.cs.ids2324.project.Backend.Model.DesignPattern.FactoryRichiest
 import it.unicam.cs.ids2324.project.Backend.Model.Itinerario;
 import it.unicam.cs.ids2324.project.Backend.Model.RichiesteItinerario.InserisciItinerario;
 import it.unicam.cs.ids2324.project.Backend.Model.RichiesteItinerario.RichiestaItinerario;
-import it.unicam.cs.ids2324.project.Backend.Resources.ResourceItinerario;
-import it.unicam.cs.ids2324.project.Backend.Resources.ResourceRichiesteItinerario;
 
 /**
  * Implementazione del factory per la creazione di richieste di inserimento itinerario.

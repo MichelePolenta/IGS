@@ -2,8 +2,8 @@ package it.unicam.cs.ids2324.project.Backend.Service;
 
 import it.unicam.cs.ids2324.project.Backend.Model.Itinerario;
 import it.unicam.cs.ids2324.project.Backend.Model.POI;
-import it.unicam.cs.ids2324.project.Backend.Resources.ResourceItinerario;
-import it.unicam.cs.ids2324.project.Backend.Resources.ResourcePOI;
+import it.unicam.cs.ids2324.project.Backend.Repository.RepositoryItinerario;
+import it.unicam.cs.ids2324.project.Backend.Repository.RepositoryPOI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,24 +17,32 @@ import java.util.List;
 @Service
 public class VisualizzazioneService {
 
-    @Autowired
-    private final ResourcePOI resourcePOI;
 
-    @Autowired
-    private final ResourceItinerario resourceItinerario;
+    private final RepositoryPOI repositoryPOI;
 
 
-    public VisualizzazioneService(ResourceItinerario resourceItinerario, ResourcePOI resourcePOI){
-        this.resourcePOI = resourcePOI;
-        this.resourceItinerario = resourceItinerario;
+    private final RepositoryItinerario repositoryItinerario;
+
+
+    public VisualizzazioneService(RepositoryItinerario repositoryItinerario, RepositoryPOI repositoryPOI){
+        this.repositoryPOI = repositoryPOI;
+        this.repositoryItinerario = repositoryItinerario;
     }
 
     public List<POI> getAllPoi(){
-        return resourcePOI.findAllByVisible(true);
+        return repositoryPOI.findAllByVisible(true);
     }
 
     public List<Itinerario> getAllItinerari(){
-        return resourceItinerario.findAllByVisible(true);
+        return repositoryItinerario.findAllByVisible(true);
+    }
+
+    public POI getSinglePoi(int id){
+        return repositoryPOI.findByIdAndVisible(id, true);
+    }
+
+    public Itinerario getSingleItinerario(int id){
+        return repositoryItinerario.findByIdAndVisible(id, true);
     }
 
 

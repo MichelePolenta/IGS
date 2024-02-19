@@ -69,9 +69,6 @@ public class Itinerario {
         this.poi = poi;
     }
 
-    public void  aggiungiPOI(POI poi){
-        this.poi.add(poi);
-    }
 
     public List<POI> getPoi() {
         return this.poi;

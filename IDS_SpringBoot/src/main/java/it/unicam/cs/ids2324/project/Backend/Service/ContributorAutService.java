@@ -7,9 +7,9 @@ import it.unicam.cs.ids2324.project.Backend.Model.Comuni;
 import it.unicam.cs.ids2324.project.Backend.Model.Itinerario;
 import it.unicam.cs.ids2324.project.Backend.Model.POI;
 import it.unicam.cs.ids2324.project.Backend.Model.PuntoLogico;
-import it.unicam.cs.ids2324.project.Backend.Resources.ResourceComune;
-import it.unicam.cs.ids2324.project.Backend.Resources.ResourceItinerario;
-import it.unicam.cs.ids2324.project.Backend.Resources.ResourcePOI;
+import it.unicam.cs.ids2324.project.Backend.Repository.RepositoryComune;
+import it.unicam.cs.ids2324.project.Backend.Repository.RepositoryItinerario;
+import it.unicam.cs.ids2324.project.Backend.Repository.RepositoryPOI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,22 +29,24 @@ import java.util.List;
 @Service
 public class ContributorAutService implements ModificheManager{
 
-    private final ResourcePOI resourcePOI;
-    private final ResourceItinerario resourceItinerario;
-    private final ResourceComune resourceComune;
+    private final RepositoryPOI repositoryPOI;
+    private final RepositoryItinerario repositoryItinerario;
+    private final RepositoryComune repositoryComune;
 
 
     @Autowired
-    public ContributorAutService(ResourcePOI resourcePOI, ResourceItinerario resourceItinerario, ResourceComune resourceComune){
-            this.resourcePOI = resourcePOI;
-            this.resourceItinerario = resourceItinerario;
-            this.resourceComune = resourceComune;
+    public ContributorAutService(RepositoryPOI repositoryPOI, RepositoryItinerario repositoryItinerario, RepositoryComune repositoryComune){
+            this.repositoryPOI = repositoryPOI;
+            this.repositoryItinerario = repositoryItinerario;
+            this.repositoryComune = repositoryComune;
     }
 
     public void deletePoi(POI poi) throws Exception{
         if (poi == null)
             throw new POIException("Bisogna selezionare un poi da cancellare");
-        resourcePOI.delete(poi);
+        if (verificaPoiItinerario(poi))
+            throw new POIException("Un'itinerario associato ha solo due punti, eliminare prima l'itinerario");
+        repositoryPOI.delete(poi);
 
     }
 
@@ -52,7 +54,7 @@ public class ContributorAutService implements ModificheManager{
         if (poi.getComune() == null || poi.getLatitudine() == 0.0 || poi.getDescrizione() == null || poi.getLatitudine() == 0 || poi.getLongitudine() == 0.0 || poi.getTitolo() == null)
             throw new POIException("Tutti i dati del punto devono essere compilati correttamente");
         poi.setVisible(true);
-        resourcePOI.save(poi);
+        repositoryPOI.save(poi);
     }
 
     public void insertPuntoLogico(int idPoi , PuntoLogico puntoLogico)throws Exception{
@@ -64,7 +66,7 @@ public class ContributorAutService implements ModificheManager{
         puntoLogico.setLatitudine(poi.getLatitudine());
         puntoLogico.setLongitudine(poi.getLongitudine());
         puntoLogico.setVisible(true);
-        resourcePOI.save(puntoLogico);
+        repositoryPOI.save(puntoLogico);
     }
     
     public void modifyPuntoFisico (int idVecchioPoi, POI nuovoPoi)throws Exception{
@@ -72,7 +74,7 @@ public class ContributorAutService implements ModificheManager{
         if (nuovoPoi.getComune() == null || nuovoPoi.getLatitudine() == 0.0 || nuovoPoi.getDescrizione() == null || nuovoPoi.getLatitudine() == 0 || nuovoPoi.getLongitudine() == 0.0 || nuovoPoi.getTitolo() == null)
             throw  new POIException("I campi da modificare devono essere compilati correttamente");
         POI poi = settingPoi(this.getSinglePoi(idVecchioPoi), nuovoPoi.getTitolo(), nuovoPoi.getDescrizione(), nuovoPoi.getLatitudine(), nuovoPoi.getLongitudine());
-        resourcePOI.save(poi);
+        repositoryPOI.save(poi);
     }
 
 
@@ -92,7 +94,7 @@ public class ContributorAutService implements ModificheManager{
             throw new POIException("Bisogna compilare correttamente i campi del nuovo poi");
         POI puntoDiRiferimento = this.getSinglePoi(idPuntoDiRiferimento);
         POI poi = settingPoi(this.getSinglePoi(idVecchioPoi),nuovoPoi.getTitolo(), nuovoPoi.getDescrizione(), puntoDiRiferimento.getLatitudine(), puntoDiRiferimento.getLongitudine());
-        resourcePOI.save(poi);
+        repositoryPOI.save(poi);
     }
 
 
@@ -104,7 +106,7 @@ public class ContributorAutService implements ModificheManager{
         itinerario.setVisible(true);
         if (verifyPois(itinerario,itinerario.getPoi()))
             throw new ItinerarioException("Tutti i punti dell'ititinerario devono condividere il comune con l'itinerario");
-        resourceItinerario.save(itinerario);
+        repositoryItinerario.save(itinerario);
     }
 
 
@@ -126,25 +128,25 @@ public class ContributorAutService implements ModificheManager{
         itinerario.setPoi(getPoiFromItinerario(pois));
         if (verifyPois(itinerario,itinerario.getPoi()))
             throw new ItinerarioException("Tutti i punti dell'ititinerario devono condividere il comune con l'itinerario");
-        resourceItinerario.save(itinerario);
+        repositoryItinerario.save(itinerario);
     }
 
 
     public void deleteIti(Itinerario itinerario)throws Exception{
         if (itinerario == null) throw new ItinerarioException("Bisogna selezionare un itinerario da cancellare");
-        resourceItinerario.delete(itinerario);
+        repositoryItinerario.delete(itinerario);
     }
 
     public POI getSinglePoi(int id){
-        return resourcePOI.findByIdAndVisible(id,true);
+        return repositoryPOI.findByIdAndVisible(id,true);
     }
 
     public Itinerario getSingleItinerario(int id){
-        return resourceItinerario.findByIdAndVisible(id,true);
+        return repositoryItinerario.findByIdAndVisible(id,true);
     }
 
     public Comuni getComuneByNome(String nome){
-        return  resourceComune.findComuneByNome(nome);
+        return  repositoryComune.findComuneByNome(nome);
     }
 
 

@@ -1,4 +1,4 @@
-package it.unicam.cs.ids2324.project.Backend.Resources;
+package it.unicam.cs.ids2324.project.Backend.Repository;
 
 import it.unicam.cs.ids2324.project.Backend.Model.Itinerario;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +12,7 @@ import java.util.List;
  * Utilizzata per interagire con la tabella "itinerario" nel database.
  */
 @Repository
-public interface ResourceItinerario extends JpaRepository<Itinerario,Integer> {
+public interface RepositoryItinerario extends JpaRepository<Itinerario,Integer> {
 
    List<Itinerario> findAllByVisible(boolean visible);
 

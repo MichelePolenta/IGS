@@ -108,7 +108,7 @@ public class  ControllerContributorAut extends ControllerVisualizzazione{
         }
 
     @DeleteMapping("/eliminaItinerario/{id}")
-    public ResponseEntity<Object> eliminaItinerario(@PathVariable("id") int idItinerario) throws Exception {
+        public ResponseEntity<Object> eliminaItinerario(@PathVariable("id") int idItinerario) throws Exception {
         try{
         Itinerario itinerario = contributorAutService.getSingleItinerario(idItinerario);
         contributorAutService.deleteIti(itinerario);
@@ -130,14 +130,6 @@ public class  ControllerContributorAut extends ControllerVisualizzazione{
         }
     }
 
-    @GetMapping("/singlePoi/{id}")
-    public ResponseEntity<POI> getSinglePoi(@PathVariable("id") int id){
-        return  ResponseEntity.ok(contributorAutService.getSinglePoi(id));
-    }
 
-    @GetMapping("/singleIti/{id}")
-    public ResponseEntity<Itinerario> getSingleIti(@PathVariable("id")int id){
-        return  ResponseEntity.ok(contributorAutService.getSingleItinerario(id));
-    }
 
 }

@@ -1,7 +1,6 @@
-package it.unicam.cs.ids2324.project.Backend.Resources;
+package it.unicam.cs.ids2324.project.Backend.Repository;
 
 import it.unicam.cs.ids2324.project.Backend.Model.Persona;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +10,5 @@ import org.springframework.stereotype.Repository;
  * Utilizzata per interagire con la tabella "Persona" nel database.
  */
 @Repository
-public interface ResourcePersona extends JpaRepository<Persona, String> {
+public interface RepositoryPersona extends JpaRepository<Persona, String> {
 }
