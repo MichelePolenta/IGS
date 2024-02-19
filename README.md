@@ -1,4 +1,4 @@
-                                                                                              PROGETTO IDS 23/24 - APPLICAZIONI WEB E MOBILE :computer:	
+                                                      PROGETTO IDS 23/24 - APPLICAZIONI WEB E MOBILE :computer:	
 
 L’applicativo che abbiamo sviluppato ha l’incarico di poter gestire una piattaforma di contribuzione, il tutto su scala comunale.
 Un nuovo utente non registrato che si interfaccia con il nostro progetto potrà vedere una mappa comunale nella quale saranno presenti punti di interesse ed itinerari, i quali saranno stati caricati sulla piattaforma da altri utenti che prendono il nome di contributor e contributor autorizzati.
