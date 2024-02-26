@@ -33,7 +33,7 @@ per i quali non possiede l'account.
 **CREDENZIALI ACCESSO ELEPHANT SQL** :unlock:
 
 Le credenziali sono già specificate nelle properties su springboot, quindi lato codice non dovrebbero presentarsi problematiche.
-Allo stesso tempo se si desidera accedere al database tramite strumenti esterni, ad esempio DataGrip, quà sotto satanno presenti username e password.
+Allo stesso tempo se si desidera accedere al database tramite strumenti esterni, ad esempio DataGrip, quà sotto satanno presenti tutti i dati necessari.
 
 Username: nhaxkrfg
 
