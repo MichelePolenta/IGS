@@ -61,14 +61,14 @@ public abstract class  POI {
     protected String tipo;
 
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "contenuto_itinerario",
             joinColumns = @JoinColumn(name = "poi"),
             inverseJoinColumns = @JoinColumn(name = "itinerario")
     )
-    private List<Itinerario> itinerario ;
+    protected List<Itinerario> itinerario ;
 
 
     public POI(@JsonProperty String tipo,  int id_poi){
@@ -163,6 +163,7 @@ public abstract class  POI {
     }
 
 
+    @JsonIgnore
     public List<Itinerario> getItinerari() {
         return this.itinerario;
     }

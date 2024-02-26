@@ -2,6 +2,7 @@ package it.unicam.cs.ids2324.project.Backend.Repository;
 
 import it.unicam.cs.ids2324.project.Backend.Model.RichiestePoi.RichiestaPoi;
 import it.unicam.cs.ids2324.project.Backend.Model.Stati;
+import it.unicam.cs.ids2324.project.Backend.Model.TipiRichieste;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,5 @@ import java.util.List;
 public interface RepositoryRichiestePoi extends JpaRepository<RichiestaPoi, Integer> {
 
     public List<RichiestaPoi> getRichiestaPoiByStato(Stati stato);
-
-
+    List<RichiestaPoi> getRichiestaPoiByStato(TipiRichieste richieste);
 }

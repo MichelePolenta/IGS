@@ -4,6 +4,7 @@ import it.unicam.cs.ids2324.project.Backend.Exception.RichiestaException;
 import it.unicam.cs.ids2324.project.Backend.Model.Itinerario;
 import it.unicam.cs.ids2324.project.Backend.Model.RichiestePoi.ModificaPoi;
 import it.unicam.cs.ids2324.project.Backend.Model.Stati;
+import it.unicam.cs.ids2324.project.Backend.Model.TipiRichieste;
 import it.unicam.cs.ids2324.project.Backend.Repository.RepositoryItinerario;
 import it.unicam.cs.ids2324.project.Backend.Repository.RepositoryPOI;
 import it.unicam.cs.ids2324.project.Backend.Repository.RepositoryRichiesteItinerario;
@@ -182,6 +183,8 @@ public class CuratoreService implements ModificheManager{
     public RichiestaItinerario getRichiestaItinerarioById(int id){
         return resourceRichiestaItinerario.findById(id).get();
     }
+
+
 
 
 }

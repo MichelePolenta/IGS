@@ -4,6 +4,7 @@ import it.unicam.cs.ids2324.project.Backend.Exception.RichiestaException;
 import it.unicam.cs.ids2324.project.Backend.Model.Itinerario;
 import it.unicam.cs.ids2324.project.Backend.Model.RichiesteItinerario.ModificaItinerario;
 import it.unicam.cs.ids2324.project.Backend.Model.Stati;
+import it.unicam.cs.ids2324.project.Backend.Model.TipiRichieste;
 import it.unicam.cs.ids2324.project.Backend.Service.CuratoreService;
 import it.unicam.cs.ids2324.project.Backend.Model.POI;
 import it.unicam.cs.ids2324.project.Backend.Model.RichiesteItinerario.RichiestaItinerario;
@@ -186,4 +187,8 @@ public class ControllerCuratore extends ControllerContributorAut{
     public ResponseEntity<List<RichiestaItinerario>> getRichiestaItinerarioByStato(@PathVariable("stato") Stati stato){
         return new ResponseEntity<>(curatoreService.getRichiestaItinerarioByStato(stato), HttpStatus.OK);
     }
+
+
+    
+
 }

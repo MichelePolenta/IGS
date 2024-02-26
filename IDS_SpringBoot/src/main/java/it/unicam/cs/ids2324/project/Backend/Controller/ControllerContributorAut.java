@@ -121,7 +121,7 @@ public class  ControllerContributorAut extends ControllerVisualizzazione{
    @PutMapping("/modificaItinerario/{id}")
     public ResponseEntity<Object> modificaItinerario(@PathVariable("id") int idItinerario, @RequestBody Itinerario itinerario,
                                                      @Size(min = 2, message = "La lista idPois deve avere almeno di 2 elementi!")
-                                                     @RequestHeader ("idPois")List<Integer>idPois)throws Exception{
+                                                         @RequestHeader ("idPois")List<Integer>idPois)throws Exception{
         try {
         contributorAutService.modificaIti(idItinerario,itinerario, idPois);
         return new ResponseEntity<>(HttpStatus.OK);

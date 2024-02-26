@@ -104,7 +104,7 @@ public class ContributorAutService implements ModificheManager{
         itinerario.setPoi(getPoiFromItinerario(idPois));
         itinerario.setComune(this.getComuneByNome(nomeComune));
         itinerario.setVisible(true);
-        if (verifyPois(itinerario,itinerario.getPoi()))
+        if (!verifyPois(itinerario,itinerario.getPoi()))
             throw new ItinerarioException("Tutti i punti dell'ititinerario devono condividere il comune con l'itinerario");
         repositoryItinerario.save(itinerario);
     }
