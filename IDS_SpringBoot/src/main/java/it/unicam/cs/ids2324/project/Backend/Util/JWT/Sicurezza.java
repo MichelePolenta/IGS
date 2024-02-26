@@ -49,9 +49,9 @@ public class Sicurezza {
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/curatore/**").hasAuthority(Ruolo.CUR.name())
                 .requestMatchers("/contributor/**").hasAuthority(Ruolo.CONTR.name())
-                .requestMatchers("/contributoraut/**").permitAll()
+                .requestMatchers("/contributoraut/**").hasAuthority(Ruolo.CONTRAUT.name())
                 .requestMatchers("/auth/**").permitAll()
-                .requestMatchers("/mappa/**").permitAll()
+                .requestMatchers("/visualizza/**").permitAll()
                 .anyRequest().authenticated()
         );
         http.authenticationProvider(providerAutenticazione());

@@ -32,7 +32,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/mappa")
+@RequestMapping("/visualizza")
 public class ControllerVisualizzazione {
 
     @Autowired ComuneService comuneService;

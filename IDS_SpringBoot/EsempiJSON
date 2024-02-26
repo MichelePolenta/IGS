@@ -1,0 +1,343 @@
+
+Cambiare il valore dei parametri del path con le parentesi graffe, per pterlo testare tramite postman
+
+Accesso
+
+Login
+URl = http://localhost:8080/auth/login
+{
+    "mail":"admin@admin.com",
+    "password":"password"
+}
+
+Signup
+URl = http://localhost:8080/auth/signup
+header = [nomeComune = "Ancona"]
+{
+    "nome":"admin",
+    "cognome":"admin",
+    "dataDiNascita":"2002-06-20",
+    "ruolo":"CUR",
+    "mail":"admin@admin.com",
+    "password":"password"
+}
+
+
+
+
+Visualizza
+
+All Pois
+URl = http://localhost:8080/visualizza/allPoi
+{
+}
+
+All Itinerari
+URl = http://localhost:8080/visualizza/allItinerari
+{
+}
+
+Visualizza singolo poi
+URl = http://localhost:8080/singlePoi/{id}
+{
+}
+
+Visualizza singolo itinerario
+URl = http://localhost:8080/singleIti/{id}
+{
+}
+
+
+
+
+Contributor
+
+Inserisci Poi Fisico
+URl = http://localhost:8080/contributor/inserisciPoiFisico/{nomeComune}
+{
+    "jsonType":"PuntoFisico",
+    "nome":"poiEsempio",
+    "descrizione":"descrizioneEsempio",
+    "latitudine":"",
+    "longitudine":""
+}
+
+Inserisci Poi Logico
+URl = http://localhost:8080/contributor/inserisciPoiLogico/{idPoiRiferimento}
+{
+    "jsonType":"PuntoLogico",
+    "nome":"poiEsempio",
+    "descrizione":"descrizioneEsempio"
+}
+
+Elimina Poi
+URl = http://localhost:8080/contributor/eliminaPoi/{id}
+{
+}
+
+Modifica Punto Fisico
+URl = http://localhost:8080/contributor/modificaPuntoFisico/{id}
+{
+    "jsonType":"PuntoFisico",
+    "nome":"poiEsempio",
+    "descrizione":"descrizioneEsempio",
+    "latitudine":"",
+    "longitudine":""
+}
+
+
+Modifica Poi Logico
+URl = http://localhost:8080/contributor/modificaPuntoLogico/{id}
+header = [idPoiRiferimento = idPoiRiferimento]
+{
+    "jsonType":"PuntoLogico",
+    "nome":"poiEsempio",
+    "descrizione":"descrizioneEsempio"
+}
+
+Inserisci Itinerario
+URl = http://localhost:8080/contributor/inserisciItinerario/{nomeComune}
+header = [idPois = [idPoiRiferimento1,idPoiRiferimento2]]
+idPois>=2
+{
+    "titolo":"itinerarioEsempio",
+    "descrizione":"descrizioneEsempio"
+}
+
+
+Elimina Itinerario
+URl = http://localhost:8080/contributor/eliminaItinerario/{id}
+{
+}
+
+Modifica Itinerario
+URl = http://localhost:8080/contributor/modificaItinerario/{id}
+header = [idPois = [idPoiRiferimento1,idPoiRiferimento2]]
+idPois>=2
+{
+    "titolo":"itinerarioEsempio",
+    "descrizione":"descrizioneEsempio"
+}
+
+
+
+Persona
+
+Ottieni dettagli della persona
+URl = http://localhost:8080/users/userDetails/{mail}
+{
+}
+
+
+
+
+Curatore
+
+Accetta Inserimento Poi
+URl = http://localhost:8080/curatore/accettaInserimentoPoi/{id}
+{
+}
+
+Accetta Eliminazione Poi
+URl = http://localhost:8080/curatore/accettaEliminazionePoi/{id}
+{
+}
+
+Accetta Modifica Poi
+URl = http://localhost:8080/curatore/accettaModificaPoi/{id}
+{
+}
+
+Accetta Inserimento Itinerario
+URl = http://localhost:8080/curatore/accettaInserimentoItinerario/{id}
+{
+}
+
+Accetta Eliminazione Itinerario
+URl = http://localhost:8080/curatore/accettaEliminazioneItinerario/{id}
+{
+}
+
+Accetta Modifica Itinerario
+URl = http://localhost:8080/curatore/accettaModificaItinerario/{id}
+{
+}
+
+Rifiuta Inserimento Poi
+URl = http://localhost:8080/curatore/rifiutaInserimentoPoi/{id}
+{
+}
+
+Rifiuta Eliminazione Poi
+URl = http://localhost:8080/curatore/rifiutaEliminazionePoi/{id}
+{
+}
+
+Rifiuta Modifica Poi
+URl = http://localhost:8080/curatore/rifiutaModificaPoi/{id}
+{
+}
+
+Rifiuta Inserimento Itinerario
+URl = http://localhost:8080/curatore/rifiutaInserimentoItinerario/{id}
+{
+}
+
+Rifiuta Eliminazione Itinerario
+URl = http://localhost:8080/curatore/rifiutaEliminazioneItinerario/{id}
+{
+}
+
+Rifiuta Modifica Itinerario
+URl = http://localhost:8080/curatore/rifiutaModificaItinerario/{id}
+{
+}
+
+Mostra richieste Poi
+URl = http://localhost:8080/curatore/showRichiestePoi/{stato}
+{
+}
+
+Mostra richieste Itinerario
+URl = http://localhost:8080/curatore/showRichiesteItinerario/{stato}
+{
+}
+
+Inserisci Poi Fisico
+URl = http://localhost:8080/curatore/inserisciPoiFisico/{nomeComune}
+{
+    "jsonType":"PuntoFisico",
+    "nome":"poiEsempio",
+    "descrizione":"descrizioneEsempio",
+    "latitudine":"",
+    "longitudine":""
+}
+
+Inserisci Poi Logico
+URl = http://localhost:8080/curatore/inserisciPoiLogico/{idPoi}
+{
+    "jsonType":"PuntoLogico",
+    "nome":"poiEsempio",
+    "descrizione":"descrizioneEsempio"
+}
+
+Elimina Poi
+URl = http://localhost:8080/curatore/eliminaPoi/{id}
+{
+}
+
+Modifica Punto Fisico
+URl = http://localhost:8080/curatore/modificaPuntoFisico/{id}
+{
+    "jsonType":"PuntoFisico",
+    "nome":"poiEsempio",
+    "descrizione":"descrizioneEsempio",
+    "latitudine":"",
+    "longitudine":""
+}
+
+
+Modifica Poi Logico
+URl = http://localhost:8080/curatore/modificaPuntoLogico/{id}
+header = [idPuntoDiRiferimento = idPuntoDiRiferimento]
+{
+    "jsonType":"PuntoLogico",
+    "nome":"poiEsempio",
+    "descrizione":"descrizioneEsempio"
+}
+
+Inserisci Itinerario
+URl = http://localhost:8080/curatore/inserisciItinerario/{nomeComune}
+header = [idPois = [idPoiRiferimento1,idPoiRiferimento2]]
+idPois>=2
+{
+    "titolo":"itinerarioEsempio",
+    "descrizione":"descrizioneEsempio"
+}
+
+
+Elimina Itinerario
+URl = http://localhost:8080/curatore/eliminaItinerario/{id}
+{
+}
+
+Modifica Itinerario
+URl = http://localhost:8080/curatore/modificaItinerario/{id}
+header = [idPois = [idPoiRiferimento1,idPoiRiferimento2]]
+idPois>=2
+{
+    "titolo":"itinerarioEsempio",
+    "descrizione":"descrizioneEsempio"
+}
+
+
+
+Contributor Autorizzato
+
+
+Inserisci Poi Fisico
+URl = http://localhost:8080/contributoraut/inserisciPoiFisico/{nomeComune}
+{
+    "jsonType":"PuntoFisico",
+    "nome":"poiEsempio",
+    "descrizione":"descrizioneEsempio",
+    "latitudine":"",
+    "longitudine":""
+}
+
+Inserisci Poi Logico
+URl = http://localhost:8080/contributoraut/inserisciPoiLogico/{idPoi}
+{
+    "jsonType":"PuntoLogico",
+    "nome":"poiEsempio",
+    "descrizione":"descrizioneEsempio"
+}
+
+Elimina Poi
+URl = http://localhost:8080/contributoraut/eliminaPoi/{id}
+{
+}
+
+Modifica Punto Fisico
+URl = http://localhost:8080/contributoraut/modificaPuntoFisico/{id}
+{
+    "jsonType":"PuntoFisico",
+    "nome":"poiEsempio",
+    "descrizione":"descrizioneEsempio",
+    "latitudine":"",
+    "longitudine":""
+}
+
+
+Modifica Poi Logico
+URl = http://localhost:8080/contributoraut/modificaPuntoLogico/{id}
+header = [idPuntoDiRiferimento = idPuntoDiRiferimento]
+{
+    "jsonType":"PuntoLogico",
+    "nome":"poiEsempio",
+    "descrizione":"descrizioneEsempio"
+}
+
+Inserisci Itinerario
+URl = http://localhost:8080/contributoraut/inserisciItinerario/{nomeComune}
+header = [idPois = [idPoiRiferimento1,idPoiRiferimento2]]
+idPois>=2
+{
+    "titolo":"itinerarioEsempio",
+    "descrizione":"descrizioneEsempio"
+}
+
+
+Elimina Itinerario
+URl = http://localhost:8080/contributoraut/eliminaItinerario/{id}
+{
+}
+
+Modifica Itinerario
+URl = http://localhost:8080/contributoraut/modificaItinerario/{id}
+header = [idPois = [idPoiRiferimento1,idPoiRiferimento2]]
+idPois>=2
+{
+    "titolo":"itinerarioEsempio",
+    "descrizione":"descrizioneEsempio"
+}

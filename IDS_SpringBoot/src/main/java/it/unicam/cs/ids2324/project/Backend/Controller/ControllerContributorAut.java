@@ -86,7 +86,7 @@ public class  ControllerContributorAut extends ControllerVisualizzazione{
 
     @PutMapping("/modificaPuntoLogico/{id}")
     public ResponseEntity<Object> modificaPuntoLogico(@PathVariable("id") int idPoi, @RequestBody PuntoLogico poiModified ,
-                                                      @RequestHeader(value = "idNuovoPuntoFisico") int nuovoPuntoRiferimento) throws Exception {
+                                                      @RequestHeader(value = "idPuntoDiRiferimento") int nuovoPuntoRiferimento) throws Exception {
         try{
             contributorAutService.modifyPuntoLogico(idPoi, poiModified, nuovoPuntoRiferimento);
                 return new ResponseEntity<>(HttpStatus.OK);

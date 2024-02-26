@@ -44,7 +44,7 @@ public class ContributorAutService implements ModificheManager{
     public void deletePoi(POI poi) throws Exception{
         if (poi == null)
             throw new POIException("Bisogna selezionare un poi da cancellare");
-        if (verificaPoiItinerario(poi))
+        if (!verificaPoiItinerario(poi))
             throw new POIException("Un'itinerario associato ha solo due punti, eliminare prima l'itinerario");
         repositoryPOI.delete(poi);
 
@@ -126,7 +126,7 @@ public class ContributorAutService implements ModificheManager{
         itinerario.setTitolo(itinerario.getTitolo());
         itinerario.setDescrizione(itinerario.getDescrizione());
         itinerario.setPoi(getPoiFromItinerario(pois));
-        if (verifyPois(itinerario,itinerario.getPoi()))
+        if (!verifyPois(itinerario,itinerario.getPoi()))
             throw new ItinerarioException("Tutti i punti dell'ititinerario devono condividere il comune con l'itinerario");
         repositoryItinerario.save(itinerario);
     }
