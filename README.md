@@ -30,7 +30,7 @@ Infatti se, ad esempio, l'utente si è registrato come contributor, in questo mo
 per i quali non possiede l'account.
 
 
-CREDENZIALI ACCESSO ELEPHANT SQL :unlock:
+**CREDENZIALI ACCESSO ELEPHANT SQL** :unlock:
 
 Le credenziali sono già specificate nelle properties su springboot, quindi lato codice non dovrebbero presentarsi problematiche.
 Allo stesso tempo se si desidera accedere al database tramite strumenti esterni, ad esempio DataGrip, quà sotto satanno presenti username e password.
@@ -43,7 +43,7 @@ Url: postgres://nhaxkrfg:lzDxSDrrGglA-KFt9iYgRTXbmYbwEX2K@dumbo.db.elephantsql.c
 
 Server: dumbo.db.elephantsql.com
 
-COME AVVIARE L'APPLICATIVO 
+**COME AVVIARE L'APPLICATIVO**
 
 Per avviare sarà sufficiente utilizzare il comando predisposto di springboot(mvn spring-boot:run), un volta che il localhost sarà partito bastera sfruttare il rest controller.
 Tramite strumenti com postman si potranno sfruttare le diverse tipologie di chiamata http, quindi una volta scelto l'url relativo alla funzionalità che si vuole provare, basterà compilare
