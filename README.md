@@ -44,6 +44,7 @@ Url: postgres://nhaxkrfg:lzDxSDrrGglA-KFt9iYgRTXbmYbwEX2K@dumbo.db.elephantsql.c
 Server: dumbo.db.elephantsql.com
 
 COME AVVIARE L'APPLICATIVO 
+
 Per avviare sarà sufficiente utilizzare il comando predisposto di springboot(mvn spring-boot:run), un volta che il localhost sarà partito bastera sfruttare il rest controller.
 Tramite strumenti com postman si potranno sfruttare le diverse tipologie di chiamata http, quindi una volta scelto l'url relativo alla funzionalità che si vuole provare, basterà compilare
 i campi richiesti dal metodo del controller.
