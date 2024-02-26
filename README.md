@@ -51,8 +51,9 @@ i campi richiesti dal metodo del controller.
 
 **ACCOUNT GIA' PRESENTE NEL DB** :raising_hand:
 
-E' già presente un'account con il ruolo di curatore nella base di dati, quindi se si desidera effettuare il login saltando lo step di registrazione, lascio qui sotto le credenziali di
-accesso.
+E' già presente un'account con il ruolo di curatore nella base di dati, se si desidera effettuare il login saltando lo step di registrazione si possono sfruttare queste
+credenziali:
 
 Mail: admin@admin.com
+
 Password: password
