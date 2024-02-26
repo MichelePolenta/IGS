@@ -49,3 +49,10 @@ Per avviare sarà sufficiente utilizzare il comando predisposto di springboot(mv
 Tramite strumenti com postman si potranno sfruttare le diverse tipologie di chiamata http, quindi una volta scelto l'url relativo alla funzionalità che si vuole provare, basterà compilare
 i campi richiesti dal metodo del controller.
 
+**ACCOUNT GIA' PRESENTE NEL DB** :raising_hand:
+
+E' già presente un'account con il ruolo di curatore nella base di dati, quindi se si desidera effettuare il login saltando lo step di registrazione, lascio qui sotto le credenziali di
+accesso.
+
+Mail: admin@admin.com
+Password: password
