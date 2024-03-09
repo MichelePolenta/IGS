@@ -50,8 +50,6 @@ public abstract class RichiestaPoi {
     @Column(name = "stato")
     protected Stati stato;
 
-
-
     public void changeState(Stati state) {
         this.stato = state;
     }

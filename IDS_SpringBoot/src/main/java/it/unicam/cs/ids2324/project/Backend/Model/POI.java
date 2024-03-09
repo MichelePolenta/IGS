@@ -39,7 +39,7 @@ public abstract class  POI {
     @Column(name = "id_poi")
     protected int id_poi;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "comune")
     protected Comuni comune;
 
@@ -60,7 +60,6 @@ public abstract class  POI {
     @Column(insertable = false, updatable = false)
     protected String tipo;
 
-
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -68,7 +67,7 @@ public abstract class  POI {
             joinColumns = @JoinColumn(name = "poi"),
             inverseJoinColumns = @JoinColumn(name = "itinerario")
     )
-    protected List<Itinerario> itinerario ;
+    private List<Itinerario> itinerario ;
 
 
     public POI(@JsonProperty String tipo,  int id_poi){
@@ -162,8 +161,7 @@ public abstract class  POI {
         return Point.fromLngLat(this.getLongitudine(), this.getLatitudine() );
     }
 
-
-    @JsonIgnore
+        @JsonIgnore
     public List<Itinerario> getItinerari() {
         return this.itinerario;
     }

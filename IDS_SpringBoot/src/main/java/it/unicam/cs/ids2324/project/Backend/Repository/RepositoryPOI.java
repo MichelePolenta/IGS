@@ -19,6 +19,4 @@ public interface RepositoryPOI extends JpaRepository<POI, Integer> {
     POI findByIdAndVisible(int id,boolean visible);
 
 
-
-
 }

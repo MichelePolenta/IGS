@@ -40,8 +40,8 @@ public class PersonaService implements UserDetailsService {
     }
 
     public DTOManager convertToDTO(Optional<Persona> persona){
-        return new DTOManager(persona.get().getNome(), persona.get().getMail(), persona.get().getPassword(),
-                persona.get().getRuolo());
+        return new DTOManager(persona.get().getNome(), persona.get().getCognome(),persona.get().getDataDiNascita(),
+                persona.get().getMail(), persona.get().getPassword(), persona.get().getRuolo());
     }
 
     @Override

@@ -66,7 +66,7 @@ public class ControllerAccesso {
         try {
             Authentication authentication = this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(credentials.getMail(), credentials.getPassword()));
             DTOManager DTOManager = this.personaService.convertToDTO(this.personaService.getPersona(credentials.getMail()));
-            String token = this.generaJwt.genera(DTOManager.getEmail(), DTOManager.getRuolo().name());
+            String token = this.generaJwt.genera(DTOManager.getMail(), DTOManager.getRuolo().name());
             return ResponseEntity.ok().headers(authorizationHeaders(token)).body(DTOManager);
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenziali errate : " + e.getLocalizedMessage());
@@ -85,7 +85,6 @@ public class ControllerAccesso {
         }
 
     }
-
 
     private HttpHeaders authorizationHeaders(String token) {
         HttpHeaders headers = new HttpHeaders();

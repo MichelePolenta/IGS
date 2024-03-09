@@ -44,8 +44,6 @@ public class ContributorAutService implements ModificheManager{
     public void deletePoi(POI poi) throws Exception{
         if (poi == null)
             throw new POIException("Bisogna selezionare un poi da cancellare");
-        if (!verificaPoiItinerario(poi))
-            throw new POIException("Un'itinerario associato ha solo due punti, eliminare prima l'itinerario");
         repositoryPOI.delete(poi);
 
     }
@@ -71,7 +69,7 @@ public class ContributorAutService implements ModificheManager{
     
     public void modifyPuntoFisico (int idVecchioPoi, POI nuovoPoi)throws Exception{
         if (idVecchioPoi == 0) throw new POIException("Bisogna selezionare il punto da modificare");
-        if (nuovoPoi.getComune() == null || nuovoPoi.getLatitudine() == 0.0 || nuovoPoi.getDescrizione() == null || nuovoPoi.getLatitudine() == 0 || nuovoPoi.getLongitudine() == 0.0 || nuovoPoi.getTitolo() == null)
+        if (nuovoPoi.getLatitudine() == 0.0 || nuovoPoi.getDescrizione() == null || nuovoPoi.getLatitudine() == 0 || nuovoPoi.getLongitudine() == 0.0 || nuovoPoi.getTitolo() == null)
             throw  new POIException("I campi da modificare devono essere compilati correttamente");
         POI poi = settingPoi(this.getSinglePoi(idVecchioPoi), nuovoPoi.getTitolo(), nuovoPoi.getDescrizione(), nuovoPoi.getLatitudine(), nuovoPoi.getLongitudine());
         repositoryPOI.save(poi);
@@ -104,7 +102,7 @@ public class ContributorAutService implements ModificheManager{
         itinerario.setPoi(getPoiFromItinerario(idPois));
         itinerario.setComune(this.getComuneByNome(nomeComune));
         itinerario.setVisible(true);
-        if (!verifyPois(itinerario,itinerario.getPoi()))
+        if (verifyPois(itinerario,itinerario.getPoi()))
             throw new ItinerarioException("Tutti i punti dell'ititinerario devono condividere il comune con l'itinerario");
         repositoryItinerario.save(itinerario);
     }
@@ -126,7 +124,7 @@ public class ContributorAutService implements ModificheManager{
         itinerario.setTitolo(itinerario.getTitolo());
         itinerario.setDescrizione(itinerario.getDescrizione());
         itinerario.setPoi(getPoiFromItinerario(pois));
-        if (!verifyPois(itinerario,itinerario.getPoi()))
+        if (verifyPois(itinerario,itinerario.getPoi()))
             throw new ItinerarioException("Tutti i punti dell'ititinerario devono condividere il comune con l'itinerario");
         repositoryItinerario.save(itinerario);
     }

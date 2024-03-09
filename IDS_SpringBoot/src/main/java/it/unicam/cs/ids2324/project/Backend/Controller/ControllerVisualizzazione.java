@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/visualizza")
+@RequestMapping("/view")
 public class ControllerVisualizzazione {
 
     @Autowired ComuneService comuneService;
@@ -47,6 +48,14 @@ public class ControllerVisualizzazione {
     }
 
 
+    @GetMapping("/allIdPoi")
+    public ResponseEntity<List<Integer>> getAllIdPoi(){
+        List<Integer> id = new ArrayList<>();
+        for (int i=0; i<visualizzazioneService.getAllPoi().size(); i++)
+            id.add(visualizzazioneService.getAllPoi().get(i).getId());
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+
     @GetMapping("/allItinerari")
     public ResponseEntity<List<Itinerario>> getAllItinerari(){
         return new ResponseEntity<>(visualizzazioneService.getAllItinerari(), HttpStatus.OK);
@@ -57,10 +66,9 @@ public class ControllerVisualizzazione {
         return  ResponseEntity.ok(visualizzazioneService.getSinglePoi(id));
     }
 
-
-
     @GetMapping("/singleIti/{id}")
     public ResponseEntity<Itinerario> getSingleIti(@PathVariable("id")int id){
         return  ResponseEntity.ok(visualizzazioneService.getSingleItinerario(id));
     }
+
 }

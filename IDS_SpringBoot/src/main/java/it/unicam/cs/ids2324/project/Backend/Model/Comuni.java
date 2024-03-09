@@ -2,6 +2,8 @@ package it.unicam.cs.ids2324.project.Backend.Model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 /**
  * Classe che rappresenta un comune nell'applicazione.
  * La tabella di persistenza è mappata sulla tabella "comuni" nel database.
@@ -28,12 +30,12 @@ public class Comuni {
 
     public Comuni(){}
 
-    public Comuni(int idComune){
-        this.idComune = idComune;
+    public Comuni(int id_comune){
+        this.idComune = id_comune;
     }
 
-    public Comuni(int idComune, String nome){
-        this.idComune = idComune;
+    public Comuni(int id_comune, String nome){
+        this.idComune = id_comune;
         this.nome = nome;
     }
 

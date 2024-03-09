@@ -71,7 +71,7 @@ public class ContributorService implements ModificheManager {
         setModifiche(backup, itinerario);
         modified.setPoi(pois);
         setModifiche(itinerario, modified);
-        if (!verifyPois(itinerario,itinerario.getPoi()))
+        if (verifyPois(itinerario,itinerario.getPoi()))
             throw new ItinerarioException("Non tutti i punti dell'itinerario sono all'interno del comune di riferimento");
         ModificaItinerario modificaItinerario = (ModificaItinerario) new FactoryModificaItinerario().create(itinerario);
         repositoryItinerario.save(modificaItinerario.getItinerario());
@@ -127,7 +127,7 @@ public class ContributorService implements ModificheManager {
         ArrayList<POI> list = new ArrayList<>();
         for (int i=0; i<idPois.size(); i++) list.add(repositoryPOI.findByIdAndVisible(idPois.get(i), true));
         itinerario.setPoi(list);
-        if (!verifyPois(itinerario,itinerario.getPoi()))
+        if (verifyPois(itinerario,itinerario.getPoi()))
             throw new ItinerarioException("Non tutti i punti dell'itinerario sono all'interno del comune di riferimento");
         repositoryItinerario.save(itinerario);
         repositoryRichiesteItinerario.save(new FactoryInserimentoItinerario().create(itinerario));
@@ -135,7 +135,7 @@ public class ContributorService implements ModificheManager {
 
     public void eliminaPoi(POI poi)throws POIException{
         if (poi == null) throw new POIException("Bisogna selezionare un poi da cancellare");
-        if (!verificaPoiItinerario(poi))
+        if (verificaPoiItinerario(poi))
             throw new POIException("Un'itinerario associato ha solo due punti, eliminare prima l'itinerario");
         repositoryRichiestePoi.save(new FactoryEliminaPoi().create(poi));
     }

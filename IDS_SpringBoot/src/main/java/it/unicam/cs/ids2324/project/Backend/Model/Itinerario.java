@@ -47,16 +47,15 @@ public class Itinerario {
     private Comuni comune;
 
 
-
     @ManyToMany
     @JoinTable(
             name = "contenuto_itinerario",
             joinColumns = @JoinColumn(name = "itinerario"),
             inverseJoinColumns = @JoinColumn(name = "poi")
     )
-    protected List<POI> poi;
+    private List<POI> poi;
 
-    protected boolean visible;
+    private boolean visible;
 
 
     public Itinerario(){}
@@ -64,13 +63,6 @@ public class Itinerario {
     public Itinerario(String titolo, String descrizione) throws  Exception{
         //if (punti.size() <2) throw  new Exception("L'itinerario deve contenere almeno due punti");
         this.titolo  = titolo;
-        this.descrizione = descrizione;
-        this.comune = comune;
-        this.poi = poi;
-    }
-
-    public Itinerario(String titolo, String descrizione, Comuni comune, ArrayList<POI> poi){
-        this.titolo = titolo;
         this.descrizione = descrizione;
         this.comune = comune;
         this.poi = poi;
@@ -120,8 +112,4 @@ public class Itinerario {
     public void setPoi(List<POI> poi) {
         this.poi = poi;
     }
-
-    public boolean getVisible() {return this.visible;}
-
-
 }
