@@ -16,7 +16,7 @@ import { HeaderInterceptor } from './Services/header/header-interceptor';
 
 
 import { HttpClientModule, HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
-import { JwtModule } from '@auth0/angular-jwt'; 
+import { JwtModule } from '@auth0/angular-jwt';
 
 
 
@@ -63,14 +63,14 @@ import { SignUpComponent } from './Components/sign-up/sign-up.component';
     ContattiComponent,
     ProfiloComponent,
     SignUpComponent,
-    WorkareaComponent,
+    WorkareaComponent
   ],
   imports: [
-    RouterModule.forRoot(routes),  
+    RouterModule.forRoot(routes),
     MatSidenavModule,
     MatToolbarModule,
     MatAutocompleteModule,
-    HttpClientModule,   
+    HttpClientModule,
     MatButtonToggleModule,
     MatPaginatorModule,
     MatTabsModule,

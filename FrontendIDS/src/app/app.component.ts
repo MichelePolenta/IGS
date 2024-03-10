@@ -35,4 +35,8 @@ export class AppComponent {
     }
   }
 
+  logout(s: string) {
+    this.authenticationService.logout();
+    this.refresh(s);
+  }
 }

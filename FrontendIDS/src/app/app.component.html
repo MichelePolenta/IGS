@@ -1,4 +1,4 @@
-<div class="overlayBody">
+<div class="overlayBody" xmlns="http://www.w3.org/1999/html">
 
 	<mat-toolbar-row id="heager">
 	  <mat-grid-list cols="3" rowHeight="100px">
@@ -9,7 +9,7 @@
 		</button>
 		</mat-grid-tile>
 		<mat-grid-tile>
-		  <a [routerLink]="['/home']" (click)="refresh('/home')" style="text-decoration: none; text-align: center;"><h1 style="margin: 0;">Map
+		  <a [routerLink]="['/home']" (click)="refresh('/home')" style="text-decoration: none; text-align: center;"><h1 class="main-logo"><b>Map
 			<svg id="Logo-header" data-name="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 635.34 871.19">
 			  <defs>
 				<style>
@@ -53,7 +53,7 @@
 				  <path class="cls-3" d="m317.67,869.05s314.67-307.77,314.67-541.28C632.34,148.4,491.46,3,317.67,3S3,148.4,3,327.77c0,233.51,314.67,541.28,314.67,541.28m0-378.9c-86.89,0-157.34-72.7-157.34-162.38s70.44-162.38,157.34-162.38,157.34,72.7,157.34,162.38-70.44,162.38-157.34,162.38"/>
 				</g>
 			  </g>
-			</svg> view</h1>
+			</svg> view</b></h1>
 		  </a>
 		</mat-grid-tile>
 		<mat-grid-tile><button *ngIf="!user" mat-button color="primary" [routerLink]="['/login']">Accedi</button>
@@ -67,6 +67,7 @@
 		  <mat-menu #menu="matMenu">
 			<button  mat-menu-item color="primary" [routerLink]="['/profile']"> Profilo</button>
 			<button  mat-menu-item color="primary" (click)="refresh('/workarea')" [routerLink]="['/workarea']"> Area di lavoro</button>
+        <button  mat-menu-item color="primary" (click)="logout('/home')" [routerLink]="['/home']"> Logout</button>
 		  </mat-menu>
 		</mat-grid-tile>
 	  </mat-grid-list>
@@ -113,9 +114,9 @@
 	</mat-sidenav-container>
 
 	<mat-toolbar-row id="footer">
-	  <mat-grid-list cols="2" rowHeight="100px">
-		<mat-grid-tile>
-      <a (click)="refresh('/home')" [routerLink]="['/home']">
+	  <div class="row text-center mt-3">
+		<div class="col-sm-12 col-md-6">
+      <a class="notshowsm" (click)="refresh('/home')" [routerLink]="['/home']">
         <svg id="Logo-footer" data-name="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 635.34 871.19">
           <defs>
             <style>
@@ -161,17 +162,17 @@
           </g>
         </svg>
       </a>
-		</mat-grid-tile>
-		<mat-grid-tile>
+		</div>
+		<div class="col-sm-12 col-md-6">
 		  <button mat-button color="primary" (click)="refresh('/home')" [routerLink]="['/home']">Home</button>
 		  <button mat-button color="primary" [routerLink]="['/contact']">Contatti</button>
 		  <button *ngIf="!user" mat-button color="primary" [routerLink]="['/login']">Accedi</button>
 		  <button *ngIf="!user" mat-button color="primary" [routerLink]="['/signup']">Registrati</button>
 		  <button *ngIf="user" mat-button color="primary" [routerLink]="['/profile']">Profilo</button>
 
-		</mat-grid-tile>
+		</div>
 
-	  </mat-grid-list>
+	  </div>
 
   </mat-toolbar-row>
   <hr style="opacity: 0.2;">

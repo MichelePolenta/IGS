@@ -1,3 +1,51 @@
+@media (min-width: 768px) {
+  .datacolumn{
+    flex-direction: row-reverse;
+    display: flex;
+  }
+
+  .data{
+    display: flex;
+    align-content: flex-start;
+    justify-content: center;
+    align-items: baseline;
+    flex-direction: column;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .datacolumn{
+    flex-direction: row-reverse;
+    display: flex;
+    justify-content: center;
+  }
+
+  .data{
+    display: flex;
+    align-content: flex-start;
+    justify-content: center;
+    align-items: baseline;
+    flex-direction: column;
+  }
+  }
+
 mat-card{
     align-items: center;
 }
+
+.logo {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  z-index: 2;
+  background-image: url(https://app.spline.design/_assets/_icons/icon_favicon32x32.png);
+  background-size: cover;
+}
+.logo:hover {
+  opacity: 0.8;
+}
+
+
