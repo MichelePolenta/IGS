@@ -1,0 +1,57 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "your-app",
+    "version": "1.0.0",
+    "root": "",
+    "sourceRoot": "src",
+    "outputRoot": "dist",
+    "architect": {
+      "build": {
+        "builder": "@angular/cli/builders/ng-packagr:build",
+        "options": {
+          "tsConfig": "./tsconfig.json",
+          "main": "./src/main.ts",
+          "outputPath": "./dist",
+          "polyfills": "./src/polyfills.ts",
+          "styles": [
+            "./src/styles.css"
+          ],
+          "scripts": [],
+          "assets": [
+            "./src/favicon.ico",
+            "./src/assets"
+          ]
+        },
+        "configurations": {
+          "production": {
+            "fileReplacements": [
+              {
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }
+            ],
+            "optimization": true,
+            "outputHashing": "all",
+            "sourceMap": false,
+            "extractCss": true,
+            "vendorChunk": false,
+            "buildOptimizer": true
+          }
+        }
+      },
+      "serve": {
+        "builder": "@angular/cli/builders/ng-serve:dev-server",
+        "options": {
+          "browserTarget": "your-app:build",
+          "port": 4200
+        },
+        "configurations": {
+          "production": {
+            "browserTarget": "your-app:build:production"
+          }
+        }
+      }
+    }
+  }
+}

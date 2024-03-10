@@ -4,6 +4,7 @@ import {FormControl} from "@angular/forms";
 import {map, Observable, startWith} from "rxjs";
 import { PoiService } from 'src/app/Services/poiService/poi.service';
 import { WorkareaService } from 'src/app/Services/WorkareaService/workarea.service';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-workarea',
@@ -18,18 +19,23 @@ import { WorkareaService } from 'src/app/Services/WorkareaService/workarea.servi
 
 export class WorkareaComponent implements OnInit{
 
-  titolo: string = '';
+  nome: string = '';
   descrizione: string = '';
   latitudine!: number;
   longitudine!: number;
+  nomeModifica: string = '';
+  descrizioneModifica: string = '';
+  latitudineModifica!: number;
+  longitudineModifica!: number;
   riferimento!: number;
   isFisicoChecked = true;
   isLogicoChecked = false;
-  idPoi = new FormControl();
+  idPoiModifica = new FormControl();
+  idPoiElimina = new FormControl();
   options : number[] = [];
   filteredOptions!: Observable<number[]>;
 
-  constructor(private poiSerivce: PoiService, private service: WorkareaService) {}
+  constructor(private poiSerivce: PoiService, private service: WorkareaService, private snackBar : MatSnackBar) {}
 
   ngOnInit() {
     this.refresh();
@@ -39,31 +45,21 @@ export class WorkareaComponent implements OnInit{
    * Metodo che esegue le azioni di modifica
    */
   modificaPoi() {
-    if (this.controlloParametriModifica()) {
-      if (this.options.includes(this.idPoi.value)) {
-        const punto: Poi = new Poi(this.titolo, this.descrizione, this.latitudine, this.longitudine);
-        punto.setId(this.idPoi.value);
-        this.service.modificaPoiFisico(this.idPoi.value, punto).subscribe(
+      if (this.options.includes(this.idPoiModifica.value)) {
+        const punto: Poi = new Poi(this.nomeModifica, this.descrizioneModifica, this.latitudineModifica, this.longitudineModifica);
+        punto.setId(this.idPoiModifica.value);
+        this.service.modificaPoiFisico(this.idPoiModifica.value, punto).subscribe(
           (response) => {
-            console.log('Risposta dal server:', response);
+            window.location.assign("/workarea");
+            this.openSnackBar('Poi modificato', 'Chiudi');
           },
           (error) => {
-            console.error('Errore nella richiesta:', error);
+            this.openSnackBar('Errore nella modifica', 'Chiudi');
           }
         );
-      }else alert("Il poi selezionato non è esistente");
-    } else alert("Bisogna compilare tutti i campi");
-   this.reload();
+      }else this.openSnackBar('Selezionare un Poi', 'Chiudi');
   }
 
-  /**
-   * Controllo dei parametri specializzato per la modifica
-   */
-  controlloParametriModifica(): boolean {
-    if (!this.controlloParametri()) return false;
-    if (this.idPoi.value == null) return false;
-    return true;
-  }
 
   /**
    * Metodo per recuperare gli id dei poi
@@ -85,7 +81,7 @@ export class WorkareaComponent implements OnInit{
    */
   refresh(){
     this.getPoiOptions();
-    this.filteredOptions = this.idPoi.valueChanges.pipe(
+    this.filteredOptions = this.idPoiModifica.valueChanges.pipe(
       startWith(''),
       map(value => this.filter(value || '')),
     );
@@ -97,25 +93,26 @@ export class WorkareaComponent implements OnInit{
    */
   insertPoiFisico() {
     if (this.controlloParametri()) {
-      const poi: Poi = new Poi(this.titolo, this.descrizione, this.latitudine, this.longitudine);
+      const poi: Poi = new Poi(this.nome, this.descrizione, this.latitudine, this.longitudine);
       console.log(poi);
       this.service.inserisciPoiFisico("Ancona", poi).subscribe(
         (response) => {
           this.refresh();
-          console.log('Risposta dal server:', response);
+          window.location.assign("/workarea");
+          this.openSnackBar('Inserimento avvenuto con successo', 'Chiudi');
         },
         (error) => {
-          console.error('Errore nella richiesta:', error);
+          this.openSnackBar('Errore nella richiesta', 'Chiudi');
         });
-    } else alert("Bisogna compilare tutti i campi");
-    this.reload();
+    } else this.openSnackBar('Bisogna scegliere il punto da modificare', 'Chiudi');
+
   }
 
   /**
    * Metodo per controllare che i paramentri non siano nulli
    */
   controlloParametri(): boolean{
-    if (this.titolo == '') return false;
+    if (this.nome == '') return false;
     if (this.descrizione == '') return false;
     if (this.latitudine == null) return false;
     if (this.longitudine == null) return false;
@@ -126,24 +123,18 @@ export class WorkareaComponent implements OnInit{
    * Metodo per eliminare i poi
    */
   eliminaPoi() {
-      if (this.idPoi.value != null) {
-        if (this.options.includes(this.idPoi.value)) {
-          this.service.eliminaPoiFisico(this.idPoi.value).subscribe(
+      if (this.idPoiElimina.value != null) {
+          this.service.eliminaPoiFisico(this.idPoiModifica.value).subscribe(
             (response) => {
               this.refresh();
-              console.log('Risposta dal server:', response);
+              window.location.assign("/workarea");
+              this.openSnackBar('Poi Eliminato', 'Chiudi');
             },
             (error) => {
-              console.error('Errore nella richiesta:', error);
+              this.openSnackBar('Errore nella cancellazione', 'Chiudi');
             }
           );
-        } else alert("Il poi selezionato non è esistente");
-      } else alert("Bisogna inserire il punto da eliminare");
-    this.reload();
-  }
-
-  reload(){
-    window.location.assign("/workarea");
+      } else this.openSnackBar('Bisogna inserire il punto da eliminare', 'Chiudi');
   }
 
 
@@ -156,6 +147,10 @@ export class WorkareaComponent implements OnInit{
     return this.options.filter(option => option.toString().toLowerCase().includes(value));
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration : 2000,
+    });
 
-
+  }
 }

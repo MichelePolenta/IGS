@@ -73,6 +73,7 @@ public class  ControllerContributorAut extends ControllerVisualizzazione{
     @PutMapping("/modificaPuntoFisico/{id}")
     public ResponseEntity<Object> modificaPuntoFisico(@PathVariable("id") int idPoi, @RequestBody PuntoFisico poiModified) throws Exception {
         try{
+            poiModified = supportModifica(poiModified, idPoi);
             if(new ManagerOSM().internoAlComune(poiModified.getPoint(), comuneService.findComuneByNome(contributorAutService.getSinglePoi(idPoi).getComune().getNome()))){
                 contributorAutService.modifyPuntoFisico(idPoi, poiModified);
                 return new ResponseEntity<>(HttpStatus.OK);
@@ -82,6 +83,17 @@ public class  ControllerContributorAut extends ControllerVisualizzazione{
         } catch (POIException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
+    }
+
+
+    private PuntoFisico supportModifica(PuntoFisico poi, int idPoi){
+        PuntoFisico supportPoi = poi;
+        POI punto = this.contributorAutService.getSinglePoi(idPoi);
+        if (poi.getTitolo() == "") supportPoi.setTitolo(punto.getTitolo());
+        if (poi.getDescrizione() == "") supportPoi.setDescrizione(punto.getDescrizione());
+        if (poi.getLatitudine() == 0.0) supportPoi.setLatitudine(punto.getLatitudine());
+        if (poi.getLongitudine() == 0.0) supportPoi.setLongitudine(punto.getLongitudine());
+        return supportPoi;
     }
 
     @PutMapping("/modificaPuntoLogico/{id}")
