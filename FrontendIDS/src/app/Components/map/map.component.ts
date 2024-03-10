@@ -12,7 +12,7 @@ import { PoiService } from 'src/app/Services/poiService/poi.service';
 export class MapComponent implements OnInit {
 
   items: any[] = [];
-  marker: any;  
+  marker: any;
   private map: any;
   router: any;
 
@@ -25,21 +25,20 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
     this.map = L.map('map').setView([43.612053, 13.515595], 11);
-    
+
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
-  
-    this.getAllPoint();
-  }  
 
-  
+    this.getAllPoint();
+  }
+
+
   private getAllPoint(){
     this.poiService.getPoiData().subscribe((poi) => {
       this.items = poi;
-  
       for (const item of poi) {
-        const popUpContent = `<b>${item.nome}</b><br>Id: ${item.id}<br>Descrizione: ${item.descrizione}<br>Latitudine: ${item.latitudine}<br>Longitudine: ${item.longitudine}`;
+        const popUpContent = `<b>${item.titolo}</b><br>Id: ${item.id}<br>Descrizione: ${item.descrizione}<br>Latitudine: ${item.latitudine}<br>Longitudine: ${item.longitudine}`;
         const marker = L.marker([item.latitudine, item.longitudine], {
           draggable: false
         }).addTo(this.map)
@@ -47,5 +46,5 @@ export class MapComponent implements OnInit {
       }
     });
   }
-  
+
 }

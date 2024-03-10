@@ -2,24 +2,24 @@
 export class Poi {
 
     jsonType : string = "PuntoFisico";
-    nome! : string;
+    titolo : string;
     descrizione! : string;
     latitudine! : number;
     longitudine! : number;
     id! : number;
-    constructor(nome : string, descrizione : string, latitudine : number, longitudine : number){
-        this.nome = nome;
+    constructor(titolo : string, descrizione : string, latitudine : number, longitudine : number){
+        this.titolo = titolo;
         this.descrizione = descrizione;
         this.latitudine = latitudine;
         this.longitudine = longitudine;
     }
 
     static createFromJson(data : Poi) : Poi{
-      return new Poi(data.nome, data.descrizione, data.latitudine, data.longitudine);
+      return new Poi(data.titolo, data.descrizione, data.latitudine, data.longitudine);
     }
 
     getNome() :  string{
-      return this.nome;
+      return this.titolo;
     }
 
     getDescrizione() : string{
@@ -38,8 +38,8 @@ export class Poi {
       return this.id;
     }
 
-    setNome(nome : string) : void{
-      this.nome = nome;
+    setNome(titolo : string) : void{
+      this.titolo = titolo;
     }
 
     setDescrizione(descrizione : string) : void{
