@@ -18,7 +18,7 @@ import { WorkareaService } from 'src/app/Services/WorkareaService/workarea.servi
 
 export class WorkareaComponent implements OnInit{
 
-  nome: string = '';
+  titolo: string = '';
   descrizione: string = '';
   latitudine!: number;
   longitudine!: number;
@@ -41,7 +41,7 @@ export class WorkareaComponent implements OnInit{
   modificaPoi() {
     if (this.controlloParametriModifica()) {
       if (this.options.includes(this.idPoi.value)) {
-        const punto: Poi = new Poi(this.nome, this.descrizione, this.latitudine, this.longitudine);
+        const punto: Poi = new Poi(this.titolo, this.descrizione, this.latitudine, this.longitudine);
         punto.setId(this.idPoi.value);
         this.service.modificaPoiFisico(this.idPoi.value, punto).subscribe(
           (response) => {
@@ -96,7 +96,7 @@ export class WorkareaComponent implements OnInit{
    */
   insertPoiFisico() {
     if (this.controlloParametri()) {
-      const poi: Poi = new Poi(this.nome, this.descrizione, this.latitudine, this.longitudine);
+      const poi: Poi = new Poi(this.titolo, this.descrizione, this.latitudine, this.longitudine);
       console.log(poi);
       this.service.inserisciPoiFisico("Ancona", poi).subscribe(
         (response) => {
@@ -114,7 +114,7 @@ export class WorkareaComponent implements OnInit{
    * Metodo per controllare che i paramentri non siano nulli
    */
   controlloParametri(): boolean{
-    if (this.nome == '') return false;
+    if (this.titolo == '') return false;
     if (this.descrizione == '') return false;
     if (this.latitudine == null) return false;
     if (this.longitudine == null) return false;
