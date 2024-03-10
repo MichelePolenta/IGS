@@ -77,7 +77,7 @@ public class ContributorAutService implements ModificheManager{
 
 
     private POI settingPoi (POI poi, String nome, String descrizione, double latittudine, double longitudine){
-        poi.setNome(nome);
+        poi.setTitolo(nome);
         poi.setDescrizione(descrizione);
         poi.setLatitudine(latittudine);
         poi.setLongitudine(longitudine);
