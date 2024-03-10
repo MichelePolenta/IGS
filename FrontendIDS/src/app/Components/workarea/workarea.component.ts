@@ -4,6 +4,8 @@ import {FormControl} from "@angular/forms";
 import {map, Observable, startWith} from "rxjs";
 import { PoiService } from 'src/app/Services/poiService/poi.service';
 import { WorkareaService } from 'src/app/Services/WorkareaService/workarea.service';
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-workarea',
@@ -29,40 +31,40 @@ export class WorkareaComponent implements OnInit{
   options : number[] = [];
   filteredOptions!: Observable<number[]>;
 
-  constructor(private poiSerivce: PoiService, private service: WorkareaService) {}
+  constructor(private poiSerivce: PoiService, private service: WorkareaService, private snackBar : MatSnackBar) {}
 
   ngOnInit() {
     this.refresh();
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action);
+  }
+
+
   /**
    * Metodo che esegue le azioni di modifica
    */
   modificaPoi() {
-    if (this.controlloParametriModifica()) {
       if (this.options.includes(this.idPoi.value)) {
-        const punto: Poi = new Poi(this.nome, this.descrizione, this.latitudine, this.longitudine);
+        let punto: Poi = new Poi(this.nome, this.descrizione, this.latitudine, this.longitudine);
         punto.setId(this.idPoi.value);
+        console.log(punto);
         this.service.modificaPoiFisico(this.idPoi.value, punto).subscribe(
           (response) => {
-            console.log('Risposta dal server:', response);
+            this.refresh();
+            window.location.assign("/workarea");
+            this.openSnackBar('Poi modificato', 'Chiudi');
           },
           (error) => {
-            console.error('Errore nella richiesta:', error);
+            console.log(error);
+            this.openSnackBar('Errore nella modifica', 'Chiudi');
           }
         );
-      }else alert("Il poi selezionato non è esistente");
-    } else alert("Bisogna compilare tutti i campi");
+      }else this.openSnackBar("Il poi selezionato non è esistente", 'Chiudi');
   }
 
-  /**
-   * Controllo dei parametri specializzato per la modifica
-   */
-  controlloParametriModifica(): boolean {
-    if (!this.controlloParametri()) return false;
-    if (this.idPoi.value == null) return false;
-    return true;
-  }
+
 
   /**
    * Metodo per recuperare gli id dei poi
@@ -101,12 +103,13 @@ export class WorkareaComponent implements OnInit{
       this.service.inserisciPoiFisico("Ancona", poi).subscribe(
         (response) => {
           this.refresh();
-          console.log('Risposta dal server:', response);
+          window.location.assign("/workarea");
+          this.openSnackBar('Poi inserito correttamente', 'Chiudi');
         },
         (error) => {
           console.error('Errore nella richiesta:', error);
         });
-    } else alert("Bisogna compilare tutti i campi");
+    } else this.openSnackBar('Bisogna compilare tutti i campi', 'Chiudi');
 
   }
 
@@ -130,14 +133,15 @@ export class WorkareaComponent implements OnInit{
           this.service.eliminaPoiFisico(this.idPoi.value).subscribe(
             (response) => {
               this.refresh();
-              console.log('Risposta dal server:', response);
+              window.location.assign("/workarea");
+              this.openSnackBar('Poi eliminato', 'Chiudi');
             },
             (error) => {
               console.error('Errore nella richiesta:', error);
             }
           );
-        } else alert("Il poi selezionato non è esistente");
-      } else alert("Bisogna inserire il punto da eliminare")
+        } else this.openSnackBar('Il poi selezionato non è esistente', 'Chiudi');
+      } else this.openSnackBar('Bisogna inserire il punto da eliminare', 'Chiudi')
   }
 
 
