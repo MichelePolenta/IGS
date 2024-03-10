@@ -1,0 +1,97 @@
+<div class="container my-3">
+    <mat-card>
+        <mat-card-content>
+    <div class="row ">
+        <div class="col-sm-12 col-md-8">
+
+          <div id="mapset" class="container">
+            <app-map></app-map>
+          </div>
+
+
+        </div>
+        <div class="col-sm-12 col-md-4">
+              <mat-tab-group>
+                <mat-tab label="Inserisci">
+                  <div class="container  py-4">
+                    <mat-form-field class="my-2">
+                      <mat-label>Nome</mat-label>
+                      <input matInput placeholder="" required [(ngModel)]="nome">
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>Descrizione</mat-label>
+                      <input matInput placeholder="" required [(ngModel)]="descrizione">
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="isFisicoChecked">
+                      <mat-label>Latitudine</mat-label>
+                      <input matInput placeholder="" required [(ngModel)]="latitudine">
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="isFisicoChecked">
+                      <mat-label>Longitudine</mat-label>
+                      <input matInput placeholder="" required [(ngModel)]="longitudine">
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="isLogicoChecked">
+                      <mat-label>Id punto fisico</mat-label>
+                      <input matInput placeholder="" required [(ngModel)]="riferimento">
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" style="margin-left: 44%;" (click) = "insertPoiFisico()">Salva</button>
+                  </div>
+                </mat-tab>
+                <mat-tab label="Modifica">
+                  <div class="container  py-4">
+                    <mat-form-field class="my-2">
+                      <mat-label>Nome</mat-label>
+                      <input matInput placeholder="" required [(ngModel)]="nome">
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>Descrizione</mat-label>
+                      <input matInput placeholder="" required [(ngModel)]="descrizione">
+                    </mat-form-field>
+
+                    <mat-form-field >
+                      <mat-label>Latitudine</mat-label>
+                      <input matInput placeholder="" required [(ngModel)]="latitudine">
+                    </mat-form-field>
+
+                    <mat-form-field >
+                      <mat-label>Longitudine</mat-label>
+                      <input matInput placeholder="" required [(ngModel)]="longitudine">
+                    </mat-form-field>
+                    <mat-form-field *ngIf="isLogicoChecked">
+                      <mat-label>Id punto fisico</mat-label>
+                      <input matInput placeholder="" required>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Id</mat-label>
+                      <mat-select placeholder="Pick one" aria-label="Number" [formControl]="idPoi">
+                        <mat-option *ngFor="let option of options" [value]="option">
+                          {{ option }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" style="margin-left: 44%;" (click) = "modificaPoi()">Salva</button>
+                  </div>
+                </mat-tab>
+                <mat-tab label="Elimina">
+                  <div class="container  py-4">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Id</mat-label>
+                      <mat-select placeholder="Pick one" aria-label="Number" [formControl]="idPoi">
+                        <mat-option *ngFor="let option of options" [value]="option">
+                          {{ option }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" style="margin-left: 44%;" (click) = "eliminaPoi()">Salva</button>
+                  </div>
+                </mat-tab>
+              </mat-tab-group>
+        </div>
+    </div>
+
+  </mat-card-content>
+</mat-card>
+</div>

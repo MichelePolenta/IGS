@@ -1,0 +1,43 @@
+<div class="container-lg">
+    <section class="main">
+        <div class="container-lg">
+            <div class="row justify-content-center">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-6">
+                    <h1 class="title"> Bentornato!</h1>
+                        <form [formGroup]="loginForm">
+
+                            <div class="col-sm-12 mb-2">
+                                <mat-form-field class="sign-mat-group">
+                                    <mat-label class="sign-label">Mail</mat-label>
+                                    <input matInput class="sign-control" formControlName="mail" required="">
+                                </mat-form-field>
+                            </div>
+
+                               <mat-form-field class="sign-mat-group">
+                                  <mat-label class="sign-label">Password</mat-label>
+                                  <input matInput [type]="hidePassword ? 'password' : 'text'" class="sign-control" formControlName="password" required="">
+                                  <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+                                    <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                                  </button>
+                               </mat-form-field>
+
+                                <div class="col-sm-12 d-grid">
+                                    <button mat-button color="primary" (click)="login()">Accedi</button>
+                                </div>
+                        </form>     
+                        
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a mat-stroked-button aria-current="page" [routerLink]="['/signup']" class="col-sm-12 btn-signup">
+                                    <span class="explanation mr-2"> Non hai un account? </span>
+                                    <span class="undrline"> Registrati </span>
+                                </a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+  
