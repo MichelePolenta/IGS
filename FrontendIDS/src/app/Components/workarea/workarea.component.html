@@ -37,28 +37,30 @@
                       <mat-label>Id punto fisico</mat-label>
                       <input matInput placeholder="" required [(ngModel)]="riferimento">
                     </mat-form-field>
-                    <button mat-raised-button color="primary" style="margin-left: 44%;" (click) = "insertPoiFisico()">Salva</button>
-                  </div>
+                    <div class="text-center">
+                    <button mat-stroked-button class="button" style="color: white" (click)="insertPoiFisico()">Inserisci</button>
+                    </div>
+                    </div>
                 </mat-tab>
                 <mat-tab label="Modifica">
                   <div class="container  py-4">
                     <mat-form-field class="my-2">
                       <mat-label>Nome</mat-label>
-                      <input matInput placeholder="" required [(ngModel)]="nome">
+                      <input matInput placeholder=""  [(ngModel)]="nomeModifica">
                     </mat-form-field>
                     <mat-form-field>
                       <mat-label>Descrizione</mat-label>
-                      <input matInput placeholder="" required [(ngModel)]="descrizione">
+                      <input matInput placeholder=""  [(ngModel)]="descrizioneModifica">
                     </mat-form-field>
 
                     <mat-form-field >
                       <mat-label>Latitudine</mat-label>
-                      <input matInput placeholder="" required [(ngModel)]="latitudine">
+                      <input matInput placeholder=""  [(ngModel)]="latitudineModifica">
                     </mat-form-field>
 
                     <mat-form-field >
                       <mat-label>Longitudine</mat-label>
-                      <input matInput placeholder="" required [(ngModel)]="longitudine">
+                      <input matInput placeholder=""  [(ngModel)]="longitudineModifica">
                     </mat-form-field>
                     <mat-form-field *ngIf="isLogicoChecked">
                       <mat-label>Id punto fisico</mat-label>
@@ -66,32 +68,37 @@
                     </mat-form-field>
                     <mat-form-field class="example-full-width">
                       <mat-label>Id</mat-label>
-                      <mat-select placeholder="Pick one" aria-label="Number" [formControl]="idPoi">
+                      <mat-select placeholder="Pick one" aria-label="Number" [formControl]="idPoiModifica">
                         <mat-option *ngFor="let option of options" [value]="option">
                           {{ option }}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
-                    <button mat-raised-button color="primary" style="margin-left: 44%;" (click) = "modificaPoi()">Salva</button>
-                  </div>
+                    <div class="text-center">
+                    <button mat-stroked-button class="button" style="color: white" (click)="modificaPoi()">Modifica</button>
+                    </div>
+                    </div>
                 </mat-tab>
                 <mat-tab label="Elimina">
                   <div class="container  py-4">
                     <mat-form-field class="example-full-width">
                       <mat-label>Id</mat-label>
-                      <mat-select placeholder="Pick one" aria-label="Number" [formControl]="idPoi">
+                      <mat-select placeholder="Pick one" aria-label="Number" [formControl]="idPoiElimina">
                         <mat-option *ngFor="let option of options" [value]="option">
                           {{ option }}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
-                    <button mat-raised-button color="primary" style="margin-left: 44%;" (click) = "eliminaPoi()">Salva</button>
-                  </div>
+                    <div class="text-center">
+                    <button mat-stroked-button class="button" style=" color: white" (click)="eliminaPoi()">Elimina</button>
+                    </div>
+                    </div>
                 </mat-tab>
               </mat-tab-group>
         </div>
     </div>
-
   </mat-card-content>
 </mat-card>
+
+
 </div>
