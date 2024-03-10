@@ -44,7 +44,7 @@ public abstract class  POI {
     protected Comuni comune;
 
     @NotNull
-    protected String nome;
+    protected String titolo;
 
     protected String descrizione;
 
@@ -76,24 +76,24 @@ public abstract class  POI {
     }
 
 
-    public POI(@JsonProperty String jsonType, String nome,String descrizione){
+    public POI(@JsonProperty String jsonType, String titolo, String descrizione){
         this.tipo = jsonType;
-        this.nome = nome;
+        this.titolo = titolo;
         this.descrizione = descrizione;
     }
 
-    public POI(int id_poi, Comuni comune,String nome,String descrizione,double latitudine,double longitudine) throws Exception {
+    public POI(int id_poi, Comuni comune, String titolo, String descrizione, double latitudine, double longitudine) throws Exception {
         this.comune=comune;
-        this.nome=nome;
+        this.titolo = titolo;
         this.descrizione=descrizione;
         this.longitudine = longitudine;
         this.latitudine = latitudine;
         this.id_poi = id_poi;
     }
 
-    public POI( Comuni comune,String nome,String descrizione,double latitudine,double longitudine) throws Exception {
+    public POI(Comuni comune, String titolo, String descrizione, double latitudine, double longitudine) throws Exception {
         this.comune=comune;
-        this.nome=nome;
+        this.titolo = titolo;
         this.descrizione=descrizione;
         this.longitudine = longitudine;
         this.latitudine = latitudine;
@@ -108,8 +108,8 @@ public abstract class  POI {
         this.comune = comune;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
     }
 
     public void setDescrizione(String descrizione) {
@@ -134,7 +134,7 @@ public abstract class  POI {
     }
 
     public String getTitolo() {
-        return this.nome;
+        return this.titolo;
     }
 
     @Override

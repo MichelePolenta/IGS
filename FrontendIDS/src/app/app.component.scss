@@ -20,31 +20,21 @@
     color: #ae93db !important;
     margin: 4px;
   }
-  
+
   svg:hover{
     color: #673ab7 !important;
     margin: 4px;
   }
 
-  
+
+
+
   button{
     margin: 4px;
   }
 
   mat-icon{
     margin: 0 !important;
-  }
-
-  #footer{
-    border: 1px;
-    border-top: 0.375rem;
-    border-color: 0,0,0,0.175;
-  }
-
-  #header{
-    border: 1px;
-    border-bottom: 0.375rem;
-    border-color: 0,0,0,0.175;
   }
 
   mat-sidenav {
@@ -54,3 +44,58 @@
   .sidenav-elements{
     margin-left: 0.75rem;
   }
+
+.overlayBody{
+  z-index: 10;
+}
+
+#Logo-header{
+  width: 65px !important;
+  height: auto;
+}
+
+#Logo-footer{
+  width: 44px !important;
+  height: auto;
+}
+
+#menu{
+  color: #673ab7 !important;
+}
+
+svg{
+  color: #ae93db !important;
+  margin: 4px;
+}
+
+svg:hover{
+  color: #673ab7 !important;
+  margin: 4px;
+}
+
+
+button{
+  margin: 4px;
+}
+
+mat-icon{
+  margin: 0 !important;
+}
+
+#footer{
+  border: 1px;
+  border-top: 0.375rem;
+}
+
+#header{
+  border: 1px;
+  border-bottom: 0.375rem;
+}
+
+mat-sidenav {
+  width: 10rem;
+}
+
+.sidenav-elements{
+  margin-left: 0.75rem;
+}

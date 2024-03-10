@@ -17,7 +17,7 @@ import java.util.List;
 public interface ModificheManager {
 
     default POI setModifiche(POI vecchioPOI, POI nuovoPoi){
-        vecchioPOI.setNome(nuovoPoi.getTitolo());
+        vecchioPOI.setTitolo(nuovoPoi.getTitolo());
         vecchioPOI.setDescrizione(nuovoPoi.getDescrizione());
         vecchioPOI.getItinerari().clear();
         if (nuovoPoi.getItinerari()!=null)

@@ -49,7 +49,7 @@ public class ContributorAutService implements ModificheManager{
     }
 
     public void insertPoi(POI poi)throws Exception{
-        if (poi.getComune() == null || poi.getLatitudine() == 0.0 || poi.getDescrizione() == null || poi.getLatitudine() == 0 || poi.getLongitudine() == 0.0 || poi.getTitolo() == null)
+        if (poi.getLatitudine() == 0.0 || poi.getDescrizione() == null || poi.getLatitudine() == 0 || poi.getLongitudine() == 0.0 || poi.getTitolo() == null)
             throw new POIException("Tutti i dati del punto devono essere compilati correttamente");
         poi.setVisible(true);
         repositoryPOI.save(poi);
@@ -77,7 +77,7 @@ public class ContributorAutService implements ModificheManager{
 
 
     private POI settingPoi (POI poi, String nome, String descrizione, double latittudine, double longitudine){
-        poi.setNome(nome);
+        poi.setTitolo(nome);
         poi.setDescrizione(descrizione);
         poi.setLatitudine(latittudine);
         poi.setLongitudine(longitudine);
