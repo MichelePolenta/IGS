@@ -44,7 +44,6 @@ public abstract class  POI {
     protected Comuni comune;
 
     @NotNull
-    @JoinColumn(name = "nome")
     protected String titolo;
 
     protected String descrizione;

@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import * as L from 'leaflet';
+
 
 import { PoiService } from 'src/app/Services/poiService/poi.service';
 
@@ -12,7 +13,6 @@ import { PoiService } from 'src/app/Services/poiService/poi.service';
 export class MapComponent implements OnInit {
 
   items: any[] = [];
-  marker: any;
   private map: any;
   router: any;
 
@@ -35,12 +35,19 @@ export class MapComponent implements OnInit {
 
 
   private getAllPoint(){
+    const customIcon = L.icon({
+      iconUrl: '../assets/marker-icon.png',
+      iconSize: [48, 48], // dimensioni dell'icona
+      iconAnchor: [24, 24], // punto in cui l'icona tocca il marker
+      popupAnchor: [0, -32] // punto in cui il popup dovrebbe aprire rispetto all'icona
+    });
     this.poiService.getPoiData().subscribe((poi) => {
       this.items = poi;
       for (const item of poi) {
         const popUpContent = `<b>${item.titolo}</b><br>Id: ${item.id}<br>Descrizione: ${item.descrizione}<br>Latitudine: ${item.latitudine}<br>Longitudine: ${item.longitudine}`;
         const marker = L.marker([item.latitudine, item.longitudine], {
-          draggable: false
+          draggable: false,
+          icon: customIcon,
         }).addTo(this.map)
           .bindPopup(popUpContent);
       }
