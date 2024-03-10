@@ -53,6 +53,7 @@ export class WorkareaComponent implements OnInit{
         );
       }else alert("Il poi selezionato non è esistente");
     } else alert("Bisogna compilare tutti i campi");
+   this.reload();
   }
 
   /**
@@ -107,7 +108,7 @@ export class WorkareaComponent implements OnInit{
           console.error('Errore nella richiesta:', error);
         });
     } else alert("Bisogna compilare tutti i campi");
-
+    this.reload();
   }
 
   /**
@@ -137,7 +138,12 @@ export class WorkareaComponent implements OnInit{
             }
           );
         } else alert("Il poi selezionato non è esistente");
-      } else alert("Bisogna inserire il punto da eliminare")
+      } else alert("Bisogna inserire il punto da eliminare");
+    this.reload();
+  }
+
+  reload(){
+    window.location.assign("/workarea");
   }
 
 

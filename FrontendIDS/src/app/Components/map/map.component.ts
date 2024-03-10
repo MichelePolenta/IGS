@@ -22,6 +22,10 @@ export class MapComponent implements OnInit {
 
   }
 
+  reload(){
+    location.reload();
+  }
+
 
   ngOnInit(): void {
     this.map = L.map('map').setView([43.612053, 13.515595], 11);
