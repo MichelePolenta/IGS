@@ -124,7 +124,7 @@ export class WorkareaComponent implements OnInit{
    */
   eliminaPoi() {
       if (this.idPoiElimina.value != null) {
-          this.service.eliminaPoiFisico(this.idPoiModifica.value).subscribe(
+          this.service.eliminaPoiFisico(this.idPoiElimina.value).subscribe(
             (response) => {
               this.refresh();
               window.location.assign("/workarea");

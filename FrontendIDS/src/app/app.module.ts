@@ -52,6 +52,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { WorkareaComponent } from './Components/workarea/workarea.component';
 import  {MatTabGroup}  from '@angular/material/tabs';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -67,6 +68,7 @@ import { SignUpComponent } from './Components/sign-up/sign-up.component';
   ],
   imports: [
     RouterModule.forRoot(routes),
+    MatSnackBarModule,
     MatSidenavModule,
     MatToolbarModule,
     MatAutocompleteModule,
