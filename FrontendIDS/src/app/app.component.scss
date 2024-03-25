@@ -22,6 +22,17 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .main-logo {
+    margin: 0;
+    font-size: 34px;
+  }
+
+  .notshowsm{
+    display: block;
+  }
+}
+
 
 .overlayBody{
     z-index: 10;
@@ -86,19 +97,7 @@
   height: auto;
 }
 
-#menu{
-  color: #673ab7 !important;
-}
 
-svg{
-  color: #ae93db !important;
-  margin: 4px;
-}
-
-svg:hover{
-  color: #673ab7 !important;
-  margin: 4px;
-}
 
 
 button{

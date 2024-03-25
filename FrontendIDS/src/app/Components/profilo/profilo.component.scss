@@ -1,7 +1,10 @@
 @media (min-width: 768px) {
   .datacolumn{
-    flex-direction: row-reverse;
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    justify-content: space-around;
   }
 
   .data{
@@ -16,9 +19,11 @@
 
 @media (max-width: 767px) {
   .datacolumn{
-    flex-direction: row-reverse;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    justify-content: space-around;
   }
 
   .data{

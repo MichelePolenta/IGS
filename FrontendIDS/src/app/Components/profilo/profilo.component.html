@@ -1,11 +1,9 @@
 <div class="container" >
-<mat-card class="m-4 p-2">
-    <div *ngIf="p">
+<mat-card class="m-4 p-2" style="align-items: normal !important;" *ngIf="p">
         <h1 class="text-center mt-3" style="font-size: 36px;"> Ciao <b>{{p.nome}} {{p.cognome}}</b> !</h1>
 
-     <mat-card-content>
        <div class="row">
-         <div class="col-sm-12 col-md-6">
+         <div class="col-sm-12 col-md-6 datacolumn">
            <iframe width="360vw" height="360vw" src="https://lottie.host/embed/ed13b569-4964-428a-a525-da88f95b2f6c/n3u22JVm2H.json"></iframe>
          </div>
          <div class="col-sm-12 col-md-6 datacolumn">
@@ -47,10 +45,8 @@
          </div>
 
        </div>
-     </mat-card-content>
 
 
-</div>
     </mat-card>
 
 </div>

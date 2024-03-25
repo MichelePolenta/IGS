@@ -28,7 +28,7 @@ export class MapComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.map = L.map('map').setView([43.612053, 13.515595], 11);
+    this.map = L.map('map').setView([43.612053, 13.515595], 14);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
